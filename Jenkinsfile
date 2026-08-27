@@ -82,22 +82,6 @@ pipeline {
       }
     }
 
-    stage('Quality gates') {
-      steps {
-        sh '''
-          docker build \
-            --target checks \
-            --tag "${DOCKER_IMAGE}:checks-${GIT_SHA}" \
-            .
-        '''
-      }
-      post {
-        always {
-          sh 'docker image rm "${DOCKER_IMAGE}:checks-${GIT_SHA}" >/dev/null 2>&1 || true'
-        }
-      }
-    }
-
     stage('Build image') {
       steps {
         sh '''

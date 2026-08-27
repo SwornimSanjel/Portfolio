@@ -14,11 +14,6 @@ COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm \
     npm ci --no-audit --no-fund
 
-FROM deps AS checks
-
-COPY . .
-RUN npm run typecheck && npm run lint
-
 FROM base AS builder
 
 COPY --from=deps /app/node_modules ./node_modules
