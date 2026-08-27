@@ -46,11 +46,14 @@ pipeline {
       steps {
         checkout scm
         script {
+          env.DOCKER_IMAGE = params.DOCKER_IMAGE?.trim() ?: 'swornim-sanjel-portfolio'
+          env.NEXT_PUBLIC_SITE_URL = params.NEXT_PUBLIC_SITE_URL?.trim() ?: 'https://swornimsanjel.com'
+          env.DOCKER_REGISTRY = params.DOCKER_REGISTRY?.trim() ?: 'https://index.docker.io/v1/'
           env.GIT_SHA = sh(
             script: 'git rev-parse --short=12 HEAD',
             returnStdout: true
           ).trim()
-          env.IMAGE_REF = "${params.DOCKER_IMAGE}:${env.GIT_SHA}"
+          env.IMAGE_REF = "${env.DOCKER_IMAGE}:${env.GIT_SHA}"
           currentBuild.displayName = "#${env.BUILD_NUMBER} ${env.GIT_SHA}"
         }
       }
