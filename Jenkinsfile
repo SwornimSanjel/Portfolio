@@ -13,27 +13,12 @@ pipeline {
     string(
       name: 'DOCKER_IMAGE',
       defaultValue: 'swornim-sanjel-portfolio',
-      description: 'Image repository, for example docker.io/username/swornim-sanjel-portfolio'
+      description: 'Local Docker image name'
     )
     string(
       name: 'NEXT_PUBLIC_SITE_URL',
-      defaultValue: 'https://swornimsanjel.com',
+      defaultValue: 'https://swornim.avernek.com',
       description: 'Canonical public URL embedded in the Next.js build'
-    )
-    booleanParam(
-      name: 'PUSH_IMAGE',
-      defaultValue: false,
-      description: 'Push the commit tag (and latest on main/master) to a registry'
-    )
-    string(
-      name: 'DOCKER_REGISTRY',
-      defaultValue: 'https://index.docker.io/v1/',
-      description: 'Registry passed to docker login when PUSH_IMAGE is enabled'
-    )
-    string(
-      name: 'DOCKER_CREDENTIALS_ID',
-      defaultValue: 'docker-registry-credentials',
-      description: 'Jenkins username/password credential used to push the image'
     )
   }
 
@@ -47,8 +32,7 @@ pipeline {
         checkout scm
         script {
           env.DOCKER_IMAGE = params.DOCKER_IMAGE?.trim() ?: 'swornim-sanjel-portfolio'
-          env.NEXT_PUBLIC_SITE_URL = params.NEXT_PUBLIC_SITE_URL?.trim() ?: 'https://swornimsanjel.com'
-          env.DOCKER_REGISTRY = params.DOCKER_REGISTRY?.trim() ?: 'https://index.docker.io/v1/'
+          env.NEXT_PUBLIC_SITE_URL = params.NEXT_PUBLIC_SITE_URL?.trim() ?: 'https://swornim.avernek.com'
           env.GIT_SHA = sh(
             script: 'git rev-parse --short=12 HEAD',
             returnStdout: true
@@ -122,43 +106,6 @@ pipeline {
           echo 'Container did not become healthy within 60 seconds.' >&2
           exit 1
         '''
-      }
-    }
-
-    stage('Push image') {
-      when {
-        expression { params.PUSH_IMAGE }
-      }
-      steps {
-        withCredentials([
-          usernamePassword(
-            credentialsId: params.DOCKER_CREDENTIALS_ID,
-            usernameVariable: 'REGISTRY_USERNAME',
-            passwordVariable: 'REGISTRY_PASSWORD'
-          )
-        ]) {
-          sh '''
-            set -eu
-            registry_config="$(mktemp -d)"
-            trap 'rm -rf "$registry_config"' EXIT
-            export DOCKER_CONFIG="$registry_config"
-
-            printf '%s' "$REGISTRY_PASSWORD" | \
-              docker login "$DOCKER_REGISTRY" \
-                --username "$REGISTRY_USERNAME" \
-                --password-stdin
-
-            docker push "$IMAGE_REF"
-
-            case "${BRANCH_NAME:-}" in
-              main|master)
-                latest_ref="${DOCKER_IMAGE}:latest"
-                docker tag "$IMAGE_REF" "$latest_ref"
-                docker push "$latest_ref"
-                ;;
-            esac
-          '''
-        }
       }
     }
   }

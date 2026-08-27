@@ -1,7 +1,7 @@
 import { unverified } from "@/content/verify";
 
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://swornimsanjel.com";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://swornim.avernek.com";
 
 /** TODO: confirm the domain before launch — canonical URLs and OG tags depend on it. */
 export const domainQuestion = unverified(

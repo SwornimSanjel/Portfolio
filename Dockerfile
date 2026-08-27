@@ -20,7 +20,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # NEXT_PUBLIC_* values are embedded in the client bundle during the build.
-ARG NEXT_PUBLIC_SITE_URL=https://swornimsanjel.com
+ARG NEXT_PUBLIC_SITE_URL=https://swornim.avernek.com
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 
 RUN --mount=type=cache,target=/app/.next/cache \
