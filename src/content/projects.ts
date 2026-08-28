@@ -316,13 +316,62 @@ export const projects: Project[] = [
 
   /* ---------------------------------------------------------------- 04 */
   {
-    slug: "nepal-comfort",
+    slug: "roshi-international",
     index: "04",
+    title: "Thirty-nine years of sauce, put online",
+    premise:
+      "A manufacturer's first real website — product range, trade enquiries and the credentials a dealer checks before ordering.",
+    discipline: "Full-stack · Delivery",
+    year: "2026",
+    // Same shape as every Avernek website engagement: the client arrives for
+    // automation and marketing, the site is added, and the site is mine.
+    role: ["Sales", "Requirements", "Design", "AI-assisted build"],
+    stack: ["Next.js", "Claude Code", "Figma"],
+    status: "Delivered",
+    featured: true,
+    cover: {
+      src: "/projects/roshi-international.jpg",
+      alt: "The Roshi International homepage — the bilingual headline beside a photograph of a 2.5kg tomato ketchup container, over a strip of trade credentials",
+      width: 1600,
+      height: 930,
+      kind: "site",
+      label: "roshiinternational.com",
+    },
+    external: { label: "Preview build", href: "https://demo.avernek.com/" },
+    summary:
+      "Roshi International has manufactured sauces and condiments in Kathmandu since 1987 — soya sauce, chilli, ketchup, mayonnaise, vinegar — sold through homes, retailers, dealers and food service. The site is finished and running on a preview domain; roshiinternational.com is bought and waiting on the hosting cutover.",
+    chapters: [
+      {
+        kind: "prose",
+        heading: "Two audiences, one page",
+        body: [
+          "A person buying a 320gm bottle for their kitchen and a dealer pricing a 5kg carton want completely different things, and a manufacturer's site usually gets built for whichever one the owner thought of first.",
+          "So the product range leads with the sizes — 370gm through 5kg on the same card — because the size list is the fastest way for a trade buyer to work out whether this supplier is relevant to them, and it costs a home cook nothing to read past it.",
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "The credentials are the product",
+        body: [
+          "Thirty-nine years, established 2044 BS, DFTQC licensed, government registered, a growing dealer network. For a food manufacturer selling into shops and restaurants, those four facts do more work than any amount of copy about quality.",
+          "They sit in a strip directly under the fold rather than on an About page, because a dealer deciding whether to make contact checks them first and leaves if they cannot find them.",
+        ],
+      },
+    ],
+  },
+
+  /* ---------------------------------------------------------------- 04 */
+  {
+    slug: "nepal-comfort",
+    index: "05",
     title: "A 1999 tour company, rebuilt",
     premise: "A full-stack rebuild for a Kathmandu vehicle rental and tour operator — client, API, database and deployment.",
     discipline: "Full-stack · Delivery",
     year: "2026",
-    role: ["Requirements", "Design", "AI-assisted build"],
+    // An Avernek engagement, not freelance. The client came for automation
+    // and marketing and asked for the site as well; the site is the part I
+    // take myself, end to end.
+    role: ["Sales", "Requirements", "Design", "AI-assisted build"],
     stack: ["Figma", "Claude Code", "React", "Node"],
     status: "Delivered",
     featured: true,
@@ -332,16 +381,23 @@ export const projects: Project[] = [
       width: 1600,
       height: 1100,
       kind: "site",
-      label: "nepalcomfort.com",
+      // The client is Nepal Comfort Tour Service (P) Ltd.; the domain is
+      // nepaltourservice.com. The chrome label said nepalcomfort.com, which
+      // is not a site that exists.
+      label: "nepaltourservice.com",
     },
     summary:
-      "Nepal Comfort Tour Service has run vehicle rental and tour transportation out of Kathmandu since 1999. The rebuild is a complete MERN application — not a template with their logo on it.",
+      "Nepal Comfort Tour Service has run vehicle rental and tour transportation out of Kathmandu since 1999. The rebuild is a complete MERN application — not a template with their logo on it. It came to Avernek as an automation and marketing engagement; the website was added to it, and the build is mine.",
+    // The rebuild is finished but not yet cut over — nepaltourservice.com
+    // still serves the old site until hosting moves. Deliberately not linked
+    // as `external`, because a link labelled with this case study that opens
+    // the site it replaced is worse than no link.
     chapters: [
       {
         kind: "prose",
         heading: "Why not a brochure site",
         body: [
-          "Nepal Comfort has run vehicle rental and tour transport out of Kathmandu since 1999. Their fleet, routes and pricing change constantly, and every change was going through whoever could edit the site that week.",
+          "Nepal Comfort Tour Service has run vehicle rental and tour transport out of Kathmandu since 1999. Their fleet, routes and pricing change constantly, and every change was going through whoever could edit the site that week.",
           "So the fleet, routes and rates are database-backed and editable by them, not hardcoded into pages. The site itself leads with their own photographs — twenty-six years of vehicles and drivers is the credential, and stock imagery would have thrown that away.",
         ],
       },
@@ -369,18 +425,26 @@ export const projects: Project[] = [
   /* ---------------------------------------------------------------- 05 */
   {
     slug: "hck-core",
-    index: "05",
+    index: "06",
     title: "Designing a college's resource platform",
     premise: "Sole UI/UX designer on a student and teacher platform, during a four-month internship.",
     discipline: "UI/UX",
     year: "2025",
     role: ["Sole UI/UX designer", "Flows", "Interface design"],
     stack: ["Figma", "Adobe XD"],
+    // The design was delivered; the build was the college's. That
+    // distinction lives in the summary rather than being smuggled into a
+    // status the type system has four legitimate values for.
     status: "Delivered",
     featured: false,
-    // TODO: needs a real screenshot — see README "Images still needed".
+    // TODO: needs a screenshot — the Figma board exists (student portal,
+    // moderator portal, and the final combined frame). See README.
+    external: {
+      label: "Development Platform HCK on LinkedIn",
+      href: "https://www.linkedin.com/posts/development-platform-hck_%F0%9D%90%81%F0%9D%90%AE%F0%9D%90%A2%F0%9D%90%A5%F0%9D%90%AD-%F0%9D%90%9F%F0%9D%90%A8%F0%9D%90%AB-%F0%9D%90%9E%F0%9D%90%9D%F0%9D%90%AE%F0%9D%90%9C%F0%9D%90%9A%F0%9D%90%AD%F0%9D%90%A8%F0%9D%90%AB%F0%9D%90%AC-%F0%9D%90%9D%F0%9D%90%9E%F0%9D%90%AC%F0%9D%90%A2%F0%9D%90%A0%F0%9D%90%A7%F0%9D%90%9E%F0%9D%90%9D-activity-7408386834533376000-J7Vx",
+    },
     summary:
-      "HCK Core is a resource-sharing platform with separate student and teacher portals, covering academic modules, extra learning resources and community features. I was the only person doing UI/UX on it.",
+      "HCK Core is a resource-sharing platform with separate student and moderator portals, covering academic modules, extra learning resources and community features. I was the only person doing UI/UX on it. The college's development team later built it, with modifications, and published it.",
     chapters: [
       {
         kind: "prose",
@@ -412,7 +476,7 @@ export const projects: Project[] = [
   /* ---------------------------------------------------------------- 06 */
   {
     slug: "mountain-routes",
-    index: "06",
+    index: "07",
     title: "Organic content for foreign trekkers",
     premise: "Running end-to-end organic content for a Nepali trekking company whose customers are almost all overseas.",
     discipline: "Growth · Content strategy",

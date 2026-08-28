@@ -13,7 +13,7 @@ import { useMotionAllowed } from "@/components/motion/MotionProvider";
  * It used to be a headline, a paragraph and a "currently" line — a statement
  * with no action attached. A portfolio is a sales document: someone reads the
  * top of it and either looks at the work or gets in touch. There are two
- * actions here and they are not equal — one solid, one glass — because a
+ * actions here and they are not equal — one solid, one outlined — because a
  * reader offered several equal choices makes none of them.
  *
  * The proof strip underneath is the founder's version of a skills bar: four

@@ -153,10 +153,20 @@ export function Nav() {
         <Link
           href="/"
           className={cn(
-            "group flex items-baseline gap-2.5 rounded-full py-1.5 transition-all duration-500 ease-rule",
-            // The wordmark takes its own glass only once the page is moving
-            // under it. At rest it sits on bare ground, which is quieter.
-            lifted ? "glass px-4" : "px-0",
+            "group flex items-baseline gap-2.5 rounded-full transition-colors duration-500 ease-rule",
+            // Padding and border are CONSTANT, and the negative margin cancels
+            // the padding so the wordmark sits on the gutter in both states.
+            //
+            // This used to animate `px-0` to `px-4` under `transition-all`,
+            // which is why the role line ended up touching the pill's stroke:
+            // the border is painted the instant the class lands, but the
+            // padding takes half a second to arrive, so for that half second
+            // the text really is hard against the edge. Animating a layout
+            // property to reveal a box is always this bug. Only colour moves
+            // now; the geometry never does, so there is also no reflow of the
+            // header on every scroll past 24px.
+            "border border-transparent px-4 py-1.5 -mx-4",
+            lifted && "glass",
             overDark && !lifted ? "text-paper" : "text-ink",
           )}
           aria-label={`${profile.name} — home`}

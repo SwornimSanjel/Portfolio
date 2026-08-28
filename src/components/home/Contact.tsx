@@ -8,11 +8,16 @@ import { useMagnetic } from "@/lib/motion/useMagnetic";
 /**
  * The close.
  *
- * Everything above this is evidence; this is the ask, and it gets the only
- * glass panel on the page so the eye lands on it after a long scroll. One
- * primary action — the email — stated twice on purpose: as a button for
- * someone skimming, and as the literal address for someone who would rather
- * copy it than let their machine decide which mail client opens.
+ * Everything above this is evidence; this is the ask. One primary action —
+ * the email — stated twice on purpose: as a button for someone skimming, and
+ * as the literal address for someone who would rather copy it than let their
+ * machine decide which mail client opens.
+ *
+ * It was a frosted panel briefly. Glass over cream is not glass — there is
+ * nothing behind it to refract, so all it contributes is the rounded, floating
+ * card that every generated landing page has. It is ruled and square again,
+ * which is the rest of this site's language. The frosting stays in the one
+ * place it is doing real work: the navigation, over the dark hero.
  */
 export function Contact() {
   const emailRef = useMagnetic<HTMLAnchorElement>(0.14, 80);
@@ -21,12 +26,7 @@ export function Contact() {
   return (
     <section id="contact" data-section-label="Contact" className="scroll-mt-24 py-section">
       <Container>
-        <div className="glass relative isolate overflow-hidden rounded-2xl px-6 py-12 sm:px-10 sm:py-16 lg:px-14">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-[12%] -top-[45%] -z-10 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(closest-side,rgb(var(--accent-rgb)/0.12),transparent)] blur-2xl"
-          />
-
+        <div className="relative isolate border-t border-rule pt-12 sm:pt-16">
           <div className="grid gap-x-8 gap-y-10 md:grid-cols-12">
             <div className="md:col-span-3">
               <p className="meta">Contact</p>

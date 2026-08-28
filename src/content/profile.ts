@@ -27,7 +27,7 @@ export const profile = {
     eyebrow: "Founder & Managing Director — Avernek Technologies",
     statement: ["Started with design.", "Ended up running", "a company."],
     support:
-      "I run Avernek Technologies Pvt. Ltd. — a three-person studio building AI automation, performance marketing and digital systems for businesses in Nepal. I find the clients, work out what they actually need, price it, and design what we ship.",
+      "I run Avernek Technologies Pvt. Ltd., a three-person studio in Lalitpur. I lead the business — I find the clients, work out what they actually need, and price and close it — and I build the client websites myself. My team owns the AI automation and the performance marketing.",
   },
 
   currently: {

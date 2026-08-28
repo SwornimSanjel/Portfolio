@@ -9,7 +9,7 @@ import type { ReactNode } from "react";
  * A portfolio is a sales document — someone reads it and either gets in touch
  * or does not — and this page had no button on it anywhere above the fold.
  * There are exactly two variants, and a page should use one of each at most:
- * a solid primary and a glass secondary. Offering a reader five equal actions
+ * a solid primary and an outlined secondary. Offering a reader five equal actions
  * is the same as offering none.
  *
  * The hover is one gesture, not three: the surface lifts a little, its shadow
@@ -52,9 +52,12 @@ export function Button({
               "hover:shadow-[0_2px_4px_rgba(18,18,15,0.18),0_20px_38px_-16px_rgba(18,18,15,0.6)]",
             ]
           : [
-              "glass text-ink",
-              "hover:-translate-y-0.5 hover:text-accent",
-              "hover:shadow-[0_2px_4px_rgba(18,18,15,0.06),0_18px_34px_-18px_rgba(18,18,15,0.3)]",
+              // Outlined, not frosted. On the dark hero this reads as a
+              // hairline control against the ground; on cream it reads as a
+              // secondary next to the solid primary. Glass here bought a
+              // floating pill and nothing else.
+              "border border-ink/25 text-ink",
+              "hover:-translate-y-0.5 hover:border-ink/50 hover:bg-ink/[0.04]",
             ],
         className,
       )}

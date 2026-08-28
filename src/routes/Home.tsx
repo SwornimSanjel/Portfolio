@@ -42,7 +42,7 @@ export default function HomePage() {
         id="work"
         label="Selected work"
         heading="What I've built."
-        standfirst="Two I can show properly, four more in the index below. A company, client delivery, and the interface work underneath it."
+        standfirst="Three I can show properly, four more in the index below. The company, the client websites I build inside it, and the interface work underneath."
       >
         <PlateGrid projects={featuredProjects} />
         <div className="mt-20">
