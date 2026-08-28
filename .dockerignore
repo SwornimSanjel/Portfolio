@@ -1,20 +1,20 @@
+# The build context is the single biggest lever on Docker build time. Without
+# this file the daemon copies node_modules and .git — several hundred MB —
+# before a single instruction runs.
 .git
 .gitignore
-.next
 node_modules
-out
-build
-coverage
-
-.env*
+dist
+.env
+.env.*
 !.env.example
-
-Dockerfile*
+*.log
+npm-debug.log*
+.DS_Store
+.vscode
+.idea
+.claude
+Dockerfile
+.dockerignore
 Jenkinsfile
 README.md
-*.log
-*.pem
-.DS_Store
-.idea
-.vscode
-tsconfig.tsbuildinfo

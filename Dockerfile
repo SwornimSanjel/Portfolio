@@ -1,51 +1,68 @@
 # syntax=docker/dockerfile:1.7
 
-FROM node:22-alpine AS base
+# ---------------------------------------------------------------------------
+# A static site, so the runtime image contains no Node, no npm and no source —
+# only nginx and the contents of dist/. That is ~25MB against the ~1.2GB a
+# `next start` image needs, and it is the difference between a deploy that
+# pulls in seconds and one that pulls in minutes.
+#
+# Three things keep the build itself short:
+#
+#   1. package*.json is copied on its own, before the source. Editing a
+#      component then costs nothing — the install layer is still valid.
+#   2. `--mount=type=cache` keeps the npm cache between builds without ever
+#      putting it in a layer. A warm rebuild installs from cache in seconds.
+#   3. .dockerignore keeps node_modules, .git and dist out of the context.
+#      Without it the daemon uploads several hundred MB before starting.
+#
+# Requires BuildKit, which is the default in Docker 23+. If a very old daemon
+# is in play, `DOCKER_BUILDKIT=1` in the environment turns it on.
+# ---------------------------------------------------------------------------
+
+# --- dependencies ----------------------------------------------------------
+FROM node:22-alpine AS deps
 WORKDIR /app
-
-ENV NEXT_TELEMETRY_DISABLED=1
-
-# Next.js' native dependencies require glibc compatibility on Alpine.
-RUN apk add --no-cache libc6-compat
-
-FROM base AS deps
-
 COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm \
     npm ci --no-audit --no-fund
 
-FROM base AS builder
-
+# --- build -----------------------------------------------------------------
+FROM node:22-alpine AS build
+WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# NEXT_PUBLIC_* values are embedded in the client bundle during the build.
-ARG NEXT_PUBLIC_SITE_URL=https://swornim.avernek.com
-ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
+# Vite inlines VITE_* at build time — there is no runtime config to change
+# later, so the origin has to be correct here.
+ARG VITE_SITE_URL=https://swornimsanjel.com
+ENV VITE_SITE_URL=$VITE_SITE_URL
 
-RUN --mount=type=cache,target=/app/.next/cache \
-    npm run build
+# Types are checked here rather than in a separate pipeline stage: it is about
+# two seconds against an already-warm node_modules, and a type error stops the
+# image being built at all instead of being caught after it ships.
+RUN npm run typecheck && npm run build
 
-FROM node:22-alpine AS runner
-WORKDIR /app
+# Pre-compress everything nginx will serve with `gzip_static`, so compression
+# happens once at build time at the highest level rather than per request at a
+# lower one. Images are already compressed and are skipped.
+RUN find dist -type f \( \
+      -name '*.js' -o -name '*.css' -o -name '*.html' \
+      -o -name '*.svg' -o -name '*.json' -o -name '*.xml' -o -name '*.txt' \
+    \) -exec sh -c 'gzip -9 -c "$1" > "$1.gz"' _ {} \;
 
-ENV NODE_ENV=production \
-    NEXT_TELEMETRY_DISABLED=1 \
-    PORT=2345 \
-    HOSTNAME=0.0.0.0
+# --- runtime ---------------------------------------------------------------
+FROM nginx:1.27-alpine-slim AS runtime
 
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 --ingroup nodejs nextjs
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist /usr/share/nginx/html
 
-COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# nginx's own image runs as root to bind :80 and drops to the `nginx` user for
+# workers, which is what we want. The content is read-only to those workers.
+RUN chown -R nginx:nginx /usr/share/nginx/html
 
-USER nextjs
+EXPOSE 80
 
-EXPOSE 2345
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD wget -q --spider http://localhost/ || exit 1
 
-HEALTHCHECK --interval=10s --timeout=3s --start-period=10s --retries=3 \
-  CMD wget -q -O /dev/null "http://127.0.0.1:${PORT}/" || exit 1
-
-CMD ["node", "server.js"]
+CMD ["nginx", "-g", "daemon off;"]

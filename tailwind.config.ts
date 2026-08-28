@@ -3,7 +3,7 @@ import type { Config } from "tailwindcss";
 /**
  * "Operator's Manual" — the portfolio's single visual system.
  *
- * Source of truth for every value lives in app/globals.css `:root`. This file
+ * Source of truth for every value lives in src/styles/globals.css `:root`. This file
  * only maps utility names onto those variables, so a token can be re-tuned in
  * one place and the whole site follows.
  *
@@ -11,12 +11,10 @@ import type { Config } from "tailwindcss";
  * champagne-bronze accent. This is paper, ink, and Lalitpur brick.
  */
 const config: Config = {
-  content: [
-    "./app/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./content/**/*.{ts,tsx}",
-    "./lib/**/*.{ts,tsx}",
-  ],
+  // One narrow glob. Tailwind rescans every matching file on each build, so
+  // pointing it at the whole project (and therefore at node_modules) is the
+  // usual reason a Tailwind build crawls.
+  content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -40,23 +38,32 @@ const config: Config = {
         mono: ["var(--font-geist-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       fontSize: {
-        // One fluid scale, a major-third ratio at the top end. Every size on
-        // the site comes from here — there are no arbitrary font sizes.
+        // One fluid scale. Every size on the site comes from here — there are
+        // no arbitrary font sizes.
+        //
+        // The top of this scale used to run 60 / 44 / 23px, which left a 20px
+        // hole in the middle and no size at all between "section heading" and
+        // "bold body". Anything that needed to sit between them was set at 44,
+        // so a page ended up with four or five headings all at title size and
+        // no hierarchy — which is what a type specimen looks like, and what
+        // this site had started to look like. The ladder is now continuous:
+        // 104 / 50 / 34 / 26 / 21 / 18.
         micro: ["0.6875rem", { lineHeight: "1.4", letterSpacing: "0.14em" }],
         meta: ["clamp(0.72rem, 0.7rem + 0.1vw, 0.8rem)", { lineHeight: "1.45", letterSpacing: "0.1em" }],
         body: ["clamp(1rem, 0.96rem + 0.22vw, 1.12rem)", { lineHeight: "1.68" }],
-        lead: ["clamp(1.12rem, 1.02rem + 0.5vw, 1.42rem)", { lineHeight: "1.52" }],
-        h3: ["clamp(1.14rem, 1.02rem + 0.55vw, 1.45rem)", { lineHeight: "1.26", letterSpacing: "-0.012em" }],
-        // Serif headings need looser tracking and more leading than a grotesque.
-        h2: ["clamp(1.6rem, 1.2rem + 1.9vw, 2.75rem)", { lineHeight: "1.08", letterSpacing: "-0.027em" }],
-        h1: ["clamp(2rem, 1.45rem + 2.9vw, 3.75rem)", { lineHeight: "1.04", letterSpacing: "-0.032em" }],
+        lead: ["clamp(1.08rem, 1rem + 0.4vw, 1.3rem)", { lineHeight: "1.56" }],
+        h3: ["clamp(1.14rem, 1rem + 0.7vw, 1.6rem)", { lineHeight: "1.28", letterSpacing: "-0.014em" }],
+        h2: ["clamp(1.5rem, 1.15rem + 1.3vw, 2.1rem)", { lineHeight: "1.14", letterSpacing: "-0.022em" }],
+        h1: ["clamp(1.9rem, 1.4rem + 2.2vw, 3.1rem)", { lineHeight: "1.08", letterSpacing: "-0.03em" }],
         display: ["clamp(2.35rem, 1.3rem + 5vw, 6.5rem)", { lineHeight: "0.94", letterSpacing: "-0.042em" }],
       },
       spacing: {
         // Sections breathe. The vertical rhythm is the main thing separating
         // a premium editorial page from a dense one.
-        section: "clamp(4.5rem, 3rem + 6vw, 8.5rem)",
-        "section-sm": "clamp(3.5rem, 2.5rem + 4vw, 6rem)",
+        // 136px of padding top and bottom put 272px of nothing between two
+        // sections on a wide screen. Breathing room, not a vacuum.
+        section: "clamp(4rem, 2.9rem + 4.4vw, 6.75rem)",
+        "section-sm": "clamp(3rem, 2.3rem + 3vw, 4.75rem)",
         gutter: "clamp(1.5rem, 0.5rem + 3.2vw, 5rem)",
       },
       maxWidth: {

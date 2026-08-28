@@ -1,15 +1,35 @@
 # Swornim Sanjel — portfolio
 
-Personal portfolio. Next.js 15 (App Router) · TypeScript · Tailwind · Motion ·
-GSAP · Lenis.
+Personal portfolio. React 19 · Vite · TypeScript · Tailwind · Motion · GSAP.
 
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm run build      # production build
+npm run build      # dist/ — production build + sitemap.xml + robots.txt
+npm run preview    # serve dist/ exactly as nginx will
 npm run typecheck  # tsc --noEmit
-npm run lint
 ```
+
+### Why not Next.js
+
+It was, until the build and deploy cost stopped being worth anything it
+bought. Nothing on this site is rendered per request: every page is a fixed
+arrangement of typed data in `src/content/`, there is no database, no API
+route, no session and no user input. That is a static site, and Next was
+compiling, tracing and containerising a full server runtime to ship one.
+
+Now it is Vite and React Router, and the numbers moved accordingly:
+
+| | Next 15 | React + Vite |
+|---|---|---|
+| `npm run build` | ~60–90s | **~1s** (plus ~0.2s for the sitemap) |
+| `node_modules` | 452 MB | **131 MB** |
+| Runtime image | Node + `.next` + `node_modules`, ~1.2 GB | **nginx + `dist/`, ~25 MB** |
+| Deploy | build, trace, push, pull, boot Node | copy 2.4 MB of static files |
+
+What was actually lost: server rendering of the initial HTML. See
+"Rendering and SEO" below — it costs less than it sounds like, and the way
+back is one dependency if it is ever needed.
 
 ---
 
@@ -165,24 +185,83 @@ follow-ups are the obvious source), then flip to `"published"`.
 ## Architecture
 
 ```
-app/                 routes; every page is a Server Component
-components/
-  layout/            Container, Section, Footer
-  navigation/        Nav, MobileMenu, IndexRail
-  typography/        MaskReveal, RuleDraw, Settle
-  motion/            MotionProvider — the single motion signal + Lenis
-  work/              Plate, PlateGrid, Schematic, PlateTransition
-  case-study/        Chapters, SystemDiagram
-  home/              homepage sections
-  ui/                Cursor, ArchiveGrid
-content/             typed data, including the unverified-fact marker
-lib/                 motion presets, hooks, constants
+index.html           the shell; default metadata and the Person JSON-LD
+src/
+  main.tsx           createRoot
+  App.tsx            routes, layout, scroll behaviour
+  routes/            one component per URL
+  components/
+    layout/          Container, Section, Footer
+    navigation/      Nav, MobileMenu, IndexRail
+    typography/      MaskReveal, RuleDraw, Settle
+    motion/          MotionProvider — the single motion signal
+    work/            Plate, PlateGrid, Frame
+    case-study/      Chapters, SystemDiagram
+    home/            homepage sections
+    ui/              SmartLink, Img, archive lightboxes
+  content/           typed data, including the unverified-fact marker
+  lib/               motion presets, hooks, constants, the SEO hook
+  styles/            globals.css — tokens and base layer
+scripts/             gen-sitemap.mjs, run after the build
+public/              fonts, images; copied to dist/ verbatim
 ```
 
-Client components are confined to the pieces that genuinely need the browser:
-the motion provider, the hero reveal, the index rail, the nav, the mobile menu,
-the plate transition, the cursor, the archive lightbox and the diagram. GSAP is
-imported dynamically inside `SystemDiagram` so it never enters the shared bundle.
+Three components replace what the framework used to provide:
+
+- **`ui/SmartLink`** — `next/link`. Routes internally, falls through to a plain
+  anchor for external targets, and scrolls to the fragment for `/#contact`,
+  which the router will not do on its own.
+- **`ui/Img`** — `next/image`. Keeps the intrinsic dimensions, lazy loading and
+  async decoding; drops the per-request re-encoding, which needed a server.
+- **`lib/seo.ts`** — the `metadata` export. Writes title, description,
+  canonical and OG tags on mount.
+
+Everything runs in the browser, so there is no Server/Client component split
+and no `"use client"` anywhere. GSAP is still imported dynamically inside
+`SystemDiagram`, so its 114 KB only loads on a case study page.
+
+---
+
+## Rendering and SEO
+
+The site is client-rendered. `index.html` carries the site-wide title,
+description, canonical, OpenGraph tags and the `Person` JSON-LD, so a crawler
+that never runs JavaScript still gets a correct document; `useSeo` narrows
+those to the page once React mounts, which is what Google indexes — it renders
+JavaScript before indexing, and `sitemap.xml` lists every route explicitly.
+
+The one thing this does not serve is a crawler that reads HTML and does not
+render: some link unfurlers, in particular. If a per-page preview card ever
+matters, the fix is prerendering, not a framework — add `vite-plugin-ssg` or
+`react-snap`, feed it the same route list `scripts/gen-sitemap.mjs` already
+builds, and each route gets its own static HTML file. It stays a static site
+and the deploy does not change.
+
+---
+
+## Deployment
+
+```bash
+docker build -t swornim-portfolio .
+docker run -d -p 8080:80 --name swornim-portfolio swornim-portfolio
+```
+
+Multi-stage: Node builds, nginx serves. The runtime image holds no Node, no
+`node_modules` and no source — only nginx and `dist/`, which is why it is
+~25 MB. `nginx.conf` does the two things a client-routed app needs: fall back
+to `index.html` for any path that is not a file, and cache the hashed
+`/assets/` for a year while keeping `index.html` uncached. Assets are
+gzipped once at build time and served with `gzip_static`.
+
+`Jenkinsfile` builds the image, smoke-tests it in a throwaway container — app
+shell, a deep client route, `sitemap.xml`, `robots.txt`, gzip headers — and
+only then replaces the running container. It does not push to any registry:
+the image is built on the machine that runs it, so there is no upload and no
+pull. Keep BuildKit on (the default since Docker 23); the npm cache mount is
+what makes a rebuild take seconds.
+
+`VITE_SITE_URL` is baked in at build time — it is a build arg, not a runtime
+env var. Change it and rebuild.
 
 `Chapter` in `content/projects.ts` is a discriminated union with an
 exhaustiveness guard in `Chapters.tsx` — adding a chapter kind is a compile
@@ -274,3 +353,16 @@ captured. The fleet and routes/pricing pages would strengthen that case study.
 - Rewrite the founder notes (above).
 - Answer the seven open questions (above).
 - Add a real OpenGraph image once the domain is settled.
+- **`/projects/avernek-system.jpg` never existed**, though `inquiry-systems`
+  referenced it — the plate rendered a broken image with its alt text sprawled
+  across it. That `cover` line is now commented out, so the entry falls back to
+  the designed placeholder; uncomment it the day the file lands. `ui/Img` also
+  blanks any image that fails to load rather than showing a broken box.
+- **Archive is hidden from the nav** while `content/archive.ts` is empty, so
+  nothing links to the "being rebuilt" stub. Add entries and it returns on its
+  own, in both the header and the footer. The route still resolves directly.
+- **Re-encode the project screenshots.** They are served as authored now that
+  there is no image server: `mountain-routes-1.jpg` alone is 429 KB. A one-off
+  pass to WebP at ~1600px would take the four files from 965 KB to roughly
+  300 KB. Nothing in the build needs to change — replace the files and update
+  the `src` in `src/content/projects.ts`.

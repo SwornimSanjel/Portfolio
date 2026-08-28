@@ -1,11 +1,7 @@
 node_modules
-.next
-out
-build
+dist
 .DS_Store
 *.pem
 .env*
 !.env.example
 .vercel
-next-env.d.ts
-tsconfig.tsbuildinfo
