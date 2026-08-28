@@ -38,7 +38,7 @@ function ChapterBlock({ chapter }: { chapter: Chapter }) {
       );
 
     case "voice":
-      // Italic serif is reserved for Swornim's own words. It never appears
+      // Italic serif is reserved for first-person words. It never appears
       // anywhere else on the site, so a reader learns the signal.
       return (
         <aside className="my-16">

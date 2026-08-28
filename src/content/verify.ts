@@ -6,9 +6,18 @@
  * guessing — which is the one thing a portfolio must never do — those fields
  * are wrapped in `unverified()` and carry the reason with them.
  *
- * `assertVerified()` runs at module load in production builds. If an
- * unverified value reaches a shipped page, the build fails loudly instead of
- * publishing a guess.
+ * NOTE ON WHAT THIS DOES AND DOES NOT DO.
+ *
+ * This comment used to claim that an `assertVerified()` ran at module load
+ * and failed the production build if an unverified value reached a shipped
+ * page. No such function was ever written. In production `fact()` simply
+ * drops the flag and renders the best current answer, so every unresolved
+ * conflict publishes silently as though it were confirmed.
+ *
+ * The marker is therefore an authoring aid, not a safety net: it shows the ⚑
+ * in development so the open questions stay visible while writing, and
+ * `collectUnverified()` can list them. Nothing enforces resolution. The nine
+ * open items are resolved by asking, not by tooling.
  */
 
 const MARK = "⚑"; // ⚑ — visible in dev, never in production

@@ -1,6 +1,6 @@
 import { profile } from "@/content/profile";
-import { education, certifications } from "@/content/education";
-import { capabilities, tools, toolGroups, toolsNote } from "@/content/capabilities";
+import { education } from "@/content/education";
+import { tools, toolGroups, toolsNote } from "@/content/capabilities";
 import { fact } from "@/content/verify";
 import { Container } from "@/components/layout/Container";
 import { Img } from "@/components/ui/Img";
@@ -92,7 +92,6 @@ export default function AboutPage() {
         id="experience"
         label="Experience"
         heading="Experience"
-        standfirst="Titles and dates as recorded on LinkedIn."
       >
         <Timeline />
       </Section>
@@ -125,41 +124,15 @@ export default function AboutPage() {
           ))}
         </dl>
 
-        <h3 className="meta mb-4 mt-12">Certifications</h3>
-        <ul className="border-t border-rule">
-          {certifications.map((cert) => (
-            <li key={cert.credentialId} className="grid gap-x-8 gap-y-1 border-b border-rule py-4 md:grid-cols-12">
-              <span className="meta tnum md:col-span-3">{cert.issued}</span>
-              <span className="md:col-span-6 text-body text-ink">{cert.title}</span>
-              <span className="meta md:col-span-3 md:text-right">{cert.credentialId}</span>
-            </li>
-          ))}
-        </ul>
       </Section>
 
       <Section
-        id="capability"
-        label="Capability"
-        heading="What I can actually do"
-        standfirst="No percentages. If a claim needs a bar chart to be believable, it isn't."
+        id="tools"
+        label="Tools"
+        heading="What I work in"
+        standfirst="Capability is on the home page. This is only what the week is spent inside."
       >
-        <div className="grid gap-px bg-rule sm:grid-cols-2">
-          {capabilities.map((group) => (
-            <div key={group.id} className="bg-paper p-6 lg:p-8">
-              <h3 className="text-h3 font-semibold text-ink">{group.title}</h3>
-              <p className="mt-2 text-body text-muted">{group.premise}</p>
-              <ul className="mt-5 flex flex-col gap-1.5 border-t border-rule pt-5">
-                {group.items.map((item) => (
-                  <li key={item} className="text-body text-graphite">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <h3 className="meta mb-5 mt-16">Tools</h3>
+        <h3 className="meta mb-5 mt-0">Tools</h3>
         <div className="grid gap-10 border-t border-rule pt-7 sm:grid-cols-3">
           {toolGroups.map((group) => (
             <div key={group}>

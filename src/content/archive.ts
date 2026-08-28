@@ -1,21 +1,13 @@
 /**
  * Curated interface and visual studies.
  *
- * ⚠ EMPTY ON PURPOSE — AUTHORSHIP NOT ESTABLISHED.
+ * Empty pending an authorship pass. The original source folder mixed
+ * self-directed work with saved reference from other designers, and there is
+ * no reliable way to tell them apart from filenames alone, so none of it
+ * ships until each piece is confirmed.
  *
- * The images previously here came from `~/Documents/figma posts/all posted`,
- * which turns out to be a mix of Swornim's own work and saved reference from
- * other designers. Two of the pieces that had made it onto the page carried
- * another creator's branding outright — "Xettri Sreations" and the Instagram
- * handle @xettri_sreations — and there is no way to tell from the filenames
- * which of the remaining 140-odd files are his.
- *
- * Publishing another designer's work on someone's portfolio is the single
- * worst thing this site could do, so all of it is pulled until Swornim
- * confirms which pieces are his. The gallery components are still in place;
- * re-enabling is only a matter of adding entries here.
- *
- * See README, "Images still needed".
+ * The gallery components are still in place; re-enabling is only a matter of
+ * adding entries here.
  */
 export type ArchiveItem = {
   id: string;

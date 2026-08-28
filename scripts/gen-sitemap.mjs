@@ -17,7 +17,7 @@ import { pathToFileURL } from "node:url";
 
 const root = path.resolve(import.meta.dirname, "..");
 const dist = path.join(root, "dist");
-const siteUrl = (process.env.VITE_SITE_URL ?? "https://swornim.avernek.com").replace(/\/$/, "");
+const siteUrl = (process.env.VITE_SITE_URL ?? "https://swornimsanjel.com").replace(/\/$/, "");
 
 const tmp = await mkdtemp(path.join(tmpdir(), "sitemap-"));
 const bundle = path.join(tmp, "content.mjs");
@@ -28,6 +28,7 @@ try {
       contents: `
         export { projects } from "@/content/projects";
         export { publishedNotes } from "@/content/notes";
+        export { archive } from "@/content/archive";
       `,
       resolveDir: root,
       loader: "ts",
@@ -41,11 +42,17 @@ try {
     logLevel: "silent",
   });
 
-  const { projects, publishedNotes } = await import(pathToFileURL(bundle).href);
+  const { projects, publishedNotes, archive } = await import(pathToFileURL(bundle).href);
   const today = new Date().toISOString().slice(0, 10);
 
+  // Only list sections that have something in them. A sitemap entry for an
+  // empty page asks a crawler to index a headline and a horizontal rule.
+  const sections = ["", "/work", "/about"];
+  if (archive.length > 0) sections.push("/archive");
+  if (publishedNotes.length > 0) sections.push("/notes");
+
   const urls = [
-    ...["", "/work", "/about", "/archive", "/notes"].map((p) => ({
+    ...sections.map((p) => ({
       loc: `${siteUrl}${p || "/"}`,
       lastmod: today,
       changefreq: "monthly",

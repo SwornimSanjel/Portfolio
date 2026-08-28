@@ -33,36 +33,5 @@ export const education: EducationEntry[] = [
     display: "Nov 2024 to May 2027",
     emphasis: "primary",
   },
-  {
-    id: "plus-two",
-    institution: unverified(
-      "United Academy",
-      'The brief says "United College"; LinkedIn says "United Academy". Which is correct for the +2?',
-    ),
-    qualification: "+2, Science",
-    display: "Aug 2022 to May 2024",
-    emphasis: "secondary",
-  },
 ];
 
-export type Certification = {
-  title: string;
-  issuer: string;
-  issued: string;
-  credentialId: string;
-};
-
-export const certifications: Certification[] = [
-  {
-    title: "Web Application Development",
-    issuer: "Herald College Kathmandu",
-    issued: "Aug 2025",
-    credentialId: "HCKCS4A240023VYB6J",
-  },
-  {
-    title: "Database",
-    issuer: "Herald College Kathmandu",
-    issued: "Jul 2025",
-    credentialId: "HCKCS4A240023XLZLW",
-  },
-];

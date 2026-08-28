@@ -1,7 +1,7 @@
 /**
  * Capabilities, not skill bars. No percentages, no proficiency claims.
  *
- * Ordered by what he actually spends his time on, which is the business.
+ * Ordered by time actually spent, which is on the business.
  *
  * Design used to lead this list, on the grounds that it is the deepest skill.
  * That was the wrong axis. A founder's capability list that opens with craft
@@ -85,7 +85,6 @@ export const capabilities: CapabilityGroup[] = [
 export const tools = [
   { name: "Figma", group: "Design", note: "Primary tool" },
   { name: "Adobe XD", group: "Design" },
-  { name: "Photoshop", group: "Design", note: "Basics, from early on" },
   { name: "Claude Code", group: "Prototyping" },
   { name: "Claude", group: "Prototyping" },
   { name: "ChatGPT", group: "Prototyping" },

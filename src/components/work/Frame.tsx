@@ -98,7 +98,10 @@ export function Frame({
 
             The bar itself is glass, which is also literal. A real window
             titlebar is translucent over its own content. */}
-        <div className="glass-bar flex shrink-0 items-center gap-2 border-b border-rule px-4 py-3">
+        {/* Fixed height, not padding-derived. The address pill is taller than the
+            three controls, so a window with no label came out 13px shorter than
+            one with a label, and a single unlabelled plate sat low in its row. */}
+        <div className="glass-bar flex h-[50px] shrink-0 items-center gap-2 border-b border-rule px-4">
           <span aria-hidden="true" className="flex shrink-0 gap-2">
             <i className="block h-3 w-3 rounded-full bg-[#FF5F57] shadow-[inset_0_0_0_0.5px_rgba(0,0,0,0.14)]" />
             <i className="block h-3 w-3 rounded-full bg-[#FEBC2E] shadow-[inset_0_0_0_0.5px_rgba(0,0,0,0.14)]" />

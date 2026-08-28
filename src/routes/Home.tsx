@@ -1,9 +1,7 @@
 import { Hero } from "@/components/home/Hero";
 import { Capabilities } from "@/components/home/Capabilities";
-import { Timeline } from "@/components/home/Timeline";
 import { Contact } from "@/components/home/Contact";
 import { Section } from "@/components/layout/Section";
-import { Button } from "@/components/ui/Button";
 import { PlateGrid } from "@/components/work/PlateGrid";
 import { ProjectIndex } from "@/components/work/ProjectIndex";
 import { IndexRail } from "@/components/navigation/IndexRail";
@@ -12,7 +10,21 @@ import { profile } from "@/content/profile";
 import { useSeo } from "@/lib/seo";
 
 /**
- * Running order.
+ * Running order: hero, the work, what he can be hired for, one way to get in
+ * touch. Nothing else.
+ *
+ * Experience and the background narrative used to sit between the capability
+ * cards and the contact block, and both were duplicates: the timeline renders
+ * identically on About from the same data, and `origin` and `method` covered
+ * the same ground `profile.story` covers there, less well. A visitor who read
+ * Home and then clicked About read the story twice and the timeline twice,
+ * which made About feel like padding rather than the longer version.
+ *
+ * The split now: Home is short and fast and about the work. About is the
+ * person, the story, the record.
+ *
+ * Original note follows.
+ *
  *
  * A portfolio is read by someone deciding whether to contact you, usually in
  * well under a minute, and almost never in the order you wrote it. So: who he
@@ -36,7 +48,6 @@ export default function HomePage() {
   const WORDS = ["No", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"];
   const shown = WORDS[featuredProjects.length] ?? String(featuredProjects.length);
   const more = WORDS[rest.length]?.toLowerCase() ?? String(rest.length);
-  const background = [profile.origin, profile.effort, profile.method];
 
   return (
     <>
@@ -47,7 +58,7 @@ export default function HomePage() {
         id="work"
         label="Selected work"
         heading="What I've built."
-        standfirst={`${shown} I can show properly, ${more} more in the index below. The company, the client websites I build inside it, and the interface work underneath.`}
+        standfirst={`${shown} featured, ${more} more below. The company, the client websites I build inside it, and the interface work underneath.`}
       >
         <PlateGrid projects={featuredProjects} />
         <div className="mt-20">
@@ -65,48 +76,7 @@ export default function HomePage() {
         <Capabilities />
       </Section>
 
-      <Section
-        id="experience"
-        label="Experience"
-        heading="Where I've worked."
-        standfirst="Five roles since 2025, mostly overlapping. Titles and dates as recorded on LinkedIn."
-      >
-        <Timeline />
-        <div className="mt-12">
-          <Button href="/about" variant="ghost">
-            The longer version
-          </Button>
-        </div>
-      </Section>
 
-      <Section
-        id="background"
-        label="Background"
-        heading="How it started, and how I work."
-      >
-        <ol className="border-t border-rule">
-          {background.map((block, i) => (
-            <li
-              key={block.label}
-              className="grid gap-x-8 gap-y-3 border-b border-rule py-10 md:grid-cols-12 md:py-12"
-            >
-              <div className="md:col-span-3">
-                <p className="meta tnum">
-                  {String(i + 1).padStart(2, "0")} · {block.label}
-                </p>
-              </div>
-              <div className="md:col-span-8">
-                <h3 className="max-w-[30ch] text-h3 font-semibold text-ink">{block.heading}</h3>
-                {block.body.map((paragraph) => (
-                  <p key={paragraph.slice(0, 20)} className="mt-4 max-w-measure text-body">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            </li>
-          ))}
-        </ol>
-      </Section>
 
       <Contact />
     </>

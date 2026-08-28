@@ -30,12 +30,6 @@ export const social: SocialLink[] = [
     href: "https://www.tiktok.com/@its_swornim",
     primary: false,
   },
-  {
-    id: "facebook",
-    label: "Facebook",
-    href: "https://www.facebook.com/swornim.sanzel.2025",
-    primary: false,
-  },
 ];
 
 export const company = {

@@ -1,11 +1,13 @@
 import { lazy, Suspense, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { Nav } from "@/components/navigation/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { scrollToHashWhenReady } from "@/components/ui/SmartLink";
 import Home from "@/routes/Home";
+import { archive } from "@/content/archive";
+import { visibleNotes } from "@/content/notes";
 
 /**
  * The whole site, as one client-rendered app.
@@ -69,8 +71,17 @@ export default function App() {
                 <Route path="/work" element={<Work />} />
                 <Route path="/work/:slug" element={<CaseStudy />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/archive" element={<Archive />} />
-                <Route path="/notes" element={<Notes />} />
+                {/* Hidden from the nav when empty, but the URL still resolved
+                    and rendered a "being rebuilt" stub for anyone with the
+                    link or an old search result. Send them to the work. */}
+                <Route
+                  path="/archive"
+                  element={archive.length > 0 ? <Archive /> : <Navigate to="/work" replace />}
+                />
+                <Route
+                  path="/notes"
+                  element={visibleNotes.length > 0 ? <Notes /> : <Navigate to="/work" replace />}
+                />
                 <Route path="/notes/:slug" element={<Note />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

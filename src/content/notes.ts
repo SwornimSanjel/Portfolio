@@ -1,13 +1,12 @@
 /**
- * Founder notes — "Things I'm learning while building".
+ * Notes — "Things I'm learning while building".
  *
- * ⚠ REVIEW BEFORE LAUNCH. These are drafted from decisions and mistakes that
- * are documented elsewhere in this repo's source material (the pricing anchor
- * and the surveillance rule are both recorded in project docs). They are
- * accurate, but they are not yet written in Swornim's own voice, and a
- * founder's notes should be. Rewrite or replace before the site goes public —
- * his existing LinkedIn posts on sales, rejection and follow-ups are the
- * obvious source. `status: "draft"` keeps them out of production until then.
+ * `status` gates publication. `publishedNotes` filters to published only, and
+ * `visibleNotes` uses that in production while showing everything in
+ * development, so a draft can be written and previewed without shipping.
+ *
+ * While no note is published the nav link and the /notes route both hide
+ * themselves; see `lib/constants/site.ts` and `App.tsx`.
  */
 export type Note = {
   slug: string;

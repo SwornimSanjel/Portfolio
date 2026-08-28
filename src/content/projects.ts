@@ -29,7 +29,7 @@ export type Chapter =
 export type DiagramStep = {
   label: string;
   detail: string;
-  /** Marks the step Swornim's system owns, as opposed to the surrounding world. */
+  /** Marks a step the system owns, as opposed to the surrounding world. */
   owned?: boolean;
 };
 
@@ -97,6 +97,14 @@ export const projects: Project[] = [
     summary:
       "Avernek Technologies is a registered Nepali company building AI inquiry systems for businesses that lose customers between an advert and a reply. I started it, sell it, direct its design, and answer for it when something breaks.",
     chapters: [
+      // TODO — client quote. Uncomment and fill when permission comes back.
+      // One sentence from a named client outperforms three paragraphs of our
+      // own prose, and the chapter type is already built and rendered.
+      // {
+      //   kind: "voice",
+      //   text: "",
+      //   attribution: "Name, Role, Company",
+      // },
       {
         kind: "prose",
         heading: "The problem",
@@ -120,11 +128,11 @@ export const projects: Project[] = [
         items: [
           {
             title: "Sell the outcome, never the technology",
-            body: "The site does not open with the word AI. It opens with turning enquiries into tracked sales opportunities, because that is the sentence an owner repeats to their partner. The technology is how we do it, not what they are buying.",
+            body: "The site doesn't open with the word AI. It opens with turning enquiries into tracked sales opportunities, because that's the sentence an owner repeats to their partner. The technology is how we do it, not what they are buying.",
           },
           {
             title: "Promise handling, not revenue",
-            body: "Our footer says we improve enquiry handling, tracking and reporting, and that we do not guarantee sales. It costs us a few deals. It also removes every argument six months in, which is worth more.",
+            body: "Our footer says we improve enquiry handling, tracking and reporting, and that we don't guarantee sales. It costs us a few deals. It also removes every argument six months in, which is worth more.",
           },
           {
             title: "Testimonials in the client's own words",
@@ -132,7 +140,7 @@ export const projects: Project[] = [
           },
           {
             title: "Three packages, one recommended",
-            body: "Core, Growth and Scale, with Growth marked as recommended. Owners do not want a configurator. They want to know which one businesses like theirs pick.",
+            body: "Core, Growth and Scale, with Growth marked as recommended. Owners don't want a configurator. They want to know which one businesses like theirs pick.",
           },
         ],
       },
@@ -140,7 +148,7 @@ export const projects: Project[] = [
         kind: "prose",
         heading: "The website",
         body: [
-          "The site is dark, typographic and deliberately not playful. The audience is a business owner deciding whether a small Nepali company can be trusted with their enquiries, and warmth is not what reassures them. The design direction, the positioning and most of the words are mine.",
+          "The site is dark, typographic and deliberately not playful. The audience is a business owner deciding whether a small Nepali company can be trusted with their enquiries, and warmth isn't what reassures them. The design direction, the positioning and most of the words are mine.",
           "It was built with AI in the loop. That isn't a confession, it's the point: the distance between deciding something and having it live was days rather than months, which for a company with no runway is the whole advantage.",
         ],
       },
@@ -167,7 +175,11 @@ export const projects: Project[] = [
         heading: "What I got wrong",
         body: [
           "I under-priced the first few deals to get signatures, and then had to argue my way back out of the number I had set. I built features clients described rather than the ones they would use. I spent too long polishing the website before there was anyone to send it to.",
-          "We are eight months in. Most of this is being learned on live clients.",
+          // A month count was here and it was wrong: the company registered in May
+          // 2026 and the line said eight months. Any hardcoded duration in prose
+          // is wrong again a month later, so the timeline carries the dates and
+          // this carries the point.
+          "Most of this is being learned on live clients.",
         ],
       },
     ],
@@ -198,7 +210,10 @@ export const projects: Project[] = [
       width: 1600,
       height: 1000,
       kind: "site",
-      label: "roshiinternational.com",
+      // The label is an assertion that the URL works. roshiinternational.com
+      // is bought but not cut over, so it points at nothing yet; this is the
+      // domain actually serving the build.
+      label: "demo.avernek.com",
     },
     external: { label: "Preview build", href: "https://demo.avernek.com/" },
     summary:
@@ -217,7 +232,7 @@ export const projects: Project[] = [
         heading: "The credentials are the product",
         body: [
           "Thirty-nine years, established 2044 BS, DFTQC licensed, government registered, a growing dealer network. For a food manufacturer selling into shops and restaurants, those four facts do more work than any amount of copy about quality.",
-          "They sit in a strip directly under the fold rather than on an About page, because a dealer deciding whether to make contact checks them first and leaves if they cannot find them.",
+          "They sit in a strip directly under the fold rather than on an About page, because a dealer deciding whether to make contact checks them first and leaves if they can't find them.",
         ],
       },
     ],
@@ -247,10 +262,9 @@ export const projects: Project[] = [
       width: 1600,
       height: 1000,
       kind: "site",
-      // The client is Nepal Comfort Tour Service (P) Ltd.; the domain is
-      // nepaltourservice.com. The chrome label said nepalcomfort.com, which
-      // is not a site that exists.
-      label: "nepaltourservice.com",
+      // Deliberately unlabelled. nepaltourservice.com still serves the site
+      // this one replaces, so putting it in the address bar would send anyone
+      // who typed it to the old build and credit us for it.
     },
     summary:
       "Nepal Comfort Tour Service has run vehicle rental and tour transportation out of Kathmandu since 1999. The rebuild is a complete MERN application, not a template with their logo on it. It came to Avernek as an automation and marketing engagement; the website was added to it, and the build is mine.",
@@ -271,9 +285,9 @@ export const projects: Project[] = [
         kind: "spec",
         heading: "Under it",
         rows: [
-          { label: "Client", value: "React 18, Vite, Tailwind, Motion" },
-          { label: "Server", value: "Node, Express, MongoDB with Mongoose, JWT auth" },
-          { label: "Local", value: "Docker Compose running mongo, server and client, with an in-memory Mongo fallback for machines without either" },
+          { label: "Front end", value: "React 18, Vite, Tailwind, Motion" },
+          { label: "Back end", value: "Node, Express, MongoDB with Mongoose, JWT auth" },
+          { label: "Local setup", value: "Docker Compose running mongo, server and client, with an in-memory Mongo fallback for machines without either" },
           { label: "Data", value: "Seed and fresh-seed scripts, so the database is reproducible" },
         ],
       },
@@ -281,8 +295,8 @@ export const projects: Project[] = [
         kind: "prose",
         heading: "Handover",
         body: [
-          "The whole thing comes up with one command, and the setup notes cover the things that actually trip people up locally. It is a small amount of writing that saves the next person an hour.",
-          "A project is not delivered until someone else can run it.",
+          "The whole thing comes up with one command, and the setup notes cover the things that actually trip people up locally. It's a small amount of writing that saves the next person an hour.",
+          "A project isn't delivered until someone else can run it.",
         ],
       },
     ],
@@ -307,7 +321,7 @@ export const projects: Project[] = [
     // Founders are not judged on who typed the code. The claim is ownership
     // of the product, stated plainly, with the build credited where it
     // belongs inside the case study rather than in the headline.
-    premise: "The inquiry system Avernek sells. What it does, what it refuses to do, who it is sold to, and the team that builds it.",
+    premise: "The inquiry system Avernek sells. What it does, what it refuses to do, who it's sold to, and the team that builds it.",
     discipline: "Product · Founder-led sales",
     year: "2026",
     role: ["Product definition", "Client discovery", "Pricing and closing", "Team lead"],
@@ -335,12 +349,20 @@ export const projects: Project[] = [
       label: "avernek.com/#demo",
     },
     summary:
-      "Businesses running ads collect messages across Facebook, Instagram, WhatsApp, web forms and marketplace listings. Avernek sells the system that answers them. I decide what it does and what it must never do, I sit with the client to find out what the business actually knows, I price it and close it, and our CTO builds it.",
+      "Businesses running ads collect messages across Facebook, Instagram, WhatsApp, web forms and marketplace listings. Avernek sells the system that answers them. My part is deciding what it does and what it must never do, sitting with the client to work out what the business actually knows, then pricing it and closing it. Our CTO builds it.",
     clearance: unverified(
       "Client names withheld pending permission",
       "Avernek's clients gave testimonials to the company. May they be named on a personal portfolio, and may any performance figures be published?",
     ),
     chapters: [
+      // TODO — client quote. Uncomment and fill when permission comes back.
+      // One sentence from a named client outperforms three paragraphs of our
+      // own prose, and the chapter type is already built and rendered.
+      // {
+      //   kind: "voice",
+      //   text: "",
+      //   attribution: "Name, Role, Company",
+      // },
       {
         kind: "prose",
         heading: "The problem underneath the problem",
@@ -371,8 +393,8 @@ export const projects: Project[] = [
         heading: "Where the product comes from",
         body: [
           "Our CTO builds the engine. My part is everything in front of it: sitting with the owner, working out what the business actually knows, and turning what's in their head into a structure the system can answer from.",
-          "That is most of the delivery time on every build. Which questions have exactly one correct answer. Which change by branch, service or season. And which must never be answered by a machine at all.",
-          "That last category is the one I care about most. Anything touching a medical opinion, a firm price commitment or a complaint goes to a person immediately. A system that knows what it is not allowed to say is worth more than one that answers everything.",
+          "That's most of the delivery time on every build. Which questions have exactly one correct answer. Which change by branch, service or season. And which must never be answered by a machine at all.",
+          "That last category is the one I care about most. Anything touching a medical opinion, a firm price commitment or a complaint goes straight to a person. Clients are usually surprised by how much we refuse to automate, and it's the part of the scope I argue hardest for.",
         ],
       },
       {
@@ -436,7 +458,7 @@ export const projects: Project[] = [
       },
       {
         kind: "prose",
-        heading: "The internship was formal recognition of something I'd already been doing",
+        heading: "The first time it was someone else's brief",
         body: [
           "By the time this started I had been teaching myself UI in Figma every day for a long time, building interfaces nobody asked for, redrawing apps I used, posting the results. Most of that work only ever lived on LinkedIn and TikTok.",
           "This was the first time it was a job with someone else's requirements attached, and a deadline that wasn't mine to move.",
@@ -504,8 +526,8 @@ export const projects: Project[] = [
         kind: "prose",
         heading: "Why every post is a carousel",
         body: [
-          "A single frame can hold a greeting. It cannot hold the difference between an SOP, a motivation letter and a personal statement, and that difference is the thing a student is actually confused about.",
-          "So the format is a cover that earns the tap and then the substance behind it: the document map, the test comparison, the reasons a visa gets refused a second time. The cover is marketing and the inside is the service, which is also how the business itself works.",
+          "A single frame can hold a greeting. It can't hold the difference between an SOP, a motivation letter and a personal statement, and that difference is the thing a student is actually confused about.",
+          "So the format is a cover that earns the tap and then the substance behind it: the document map, the test comparison, the reasons a visa gets refused a second time. The cover has to earn the tap and the inside has to be worth it, which is roughly how the business works offline too.",
         ],
       },
       {
@@ -570,8 +592,8 @@ export const projects: Project[] = [
         kind: "prose",
         heading: "Why the itineraries look like this",
         body: [
-          "A trekking post that is just a photograph of a mountain competes with every other photograph of a mountain. Someone deciding whether to spend three weeks and a lot of money in a country they have never visited is not short of scenery. They are short of specifics.",
-          "So the format leads with the map and the numbers. Altitudes on every stop, acclimatisation days marked, the flight legs drawn separately from the walking. It is denser than a normal social post on purpose: density reads as competence, and competence is the thing being sold.",
+          "A trekking post that's just a photograph of a mountain competes with every other photograph of a mountain. Someone deciding whether to spend three weeks and a lot of money in a country they've never visited isn't short of scenery. They are short of specifics.",
+          "So the format leads with the map and the numbers. Altitudes on every stop, acclimatisation days marked, the flight legs drawn separately from the walking. It's denser than a normal social post on purpose. Someone weighing up three weeks and a lot of money reads that density as a company that has run the route before, which is the whole thing being sold.",
         ],
       },
       // A second itinerary belongs here, to show the format holding across
@@ -588,7 +610,7 @@ export const projects: Project[] = [
           {
             label: "Delivered",
             value:
-              "2,800+ uploads. That counts each platform separately and is not a count of unique videos, because one edit goes to two places",
+              "2,800+ uploads. That counts each platform separately and isn't a count of unique videos, because one edit goes to two places",
           },
           { label: "Also", value: "Static festival posts, in the same house style as the video thumbnails" },
         ],
@@ -598,14 +620,14 @@ export const projects: Project[] = [
         heading: "How one person ships at that rate",
         body: [
           "The number above is only interesting if the pipeline behind it is honest, so: edits are cut in CapCut, thumbnails are built in Figma against a fixed template, and captions and the occasional generated still come from an assistant rather than being written from scratch each time. Monthly reporting figures are pulled and summarised the same way.",
-          "None of that decides what to post. It removes the part of the job that is retyping, which is what makes a daily cadence survivable for one person alongside a company. The judgement about which route, which season and which objection a foreign trekker is actually carrying is the part that cannot be automated, and it is the part that makes the account work.",
+          "None of that decides what to post. It removes the part of the job that's retyping, which is what makes a daily cadence survivable for one person alongside a company. The judgement about which route, which season and which objection a foreign trekker is actually carrying is the part that can't be automated, and it's the part that makes the account work.",
         ],
       },
       {
         kind: "prose",
         heading: "Reporting to the owner every month",
         body: [
-          "Every month the owner gets a written performance report. Not a screenshot of a dashboard, but an actual account of what was posted, what worked, what did not, and what changes next month.",
+          "Every month the owner gets a written performance report. Not a screenshot of a dashboard, but an actual account of what was posted, what worked, what didn't, and what changes next month.",
           "That habit came out of the customer-success year. The reporting is often what keeps the relationship, not the work itself.",
         ],
       },
