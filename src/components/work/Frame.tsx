@@ -41,10 +41,20 @@ export function Frame({
    * own ratio side by side, the rows end at different heights and the grid
    * looks accidental.
    *
-   * The fix is a mat, not a crop. The box is fixed, the image is contained
-   * inside it, and anything narrower than the box gets margins rather than
-   * losing its edges. Case study pages pass nothing and still get the image
-   * whole, at its real proportion, which is where that matters.
+   * The ratio is set on the PICTURE AREA, not on the outer window.
+   *
+   * Setting it on the window was the first attempt and it was wrong: the
+   * title bar is a fixed 50px, so the picture got "whatever is left", which
+   * came out at 1.865 while every screenshot is 1.60. Every site plate then
+   * fitted by height and sat in forty pixels of dead ground on each side.
+   *
+   * With the ratio on the picture instead, a 16:10 screenshot fills it
+   * exactly: no gap, no crop. The artifact frame is padded by half the bar
+   * height on each edge so that its total comes out identical to a windowed
+   * plate, which is what keeps the rows level.
+   *
+   * Case study pages pass nothing and still get the image whole, at its real
+   * proportion, which is where that matters.
    */
   boxed?: boolean;
 }) {
@@ -69,10 +79,7 @@ export function Frame({
       <figure
         className={cn(
           "overflow-hidden rounded-lg border border-rule bg-paper-deep",
-          // The ratio is on the window, not the screenshot, so the title bar
-          // is inside the measurement and a site plate ends level with an
-          // artifact plate beside it.
-          boxed && "flex aspect-[16/10] flex-col",
+          boxed && "flex flex-col",
           "shadow-[0_1px_2px_rgba(18,18,15,0.04),0_16px_36px_-26px_rgba(18,18,15,0.25)]",
           "transition-all duration-500 ease-rule",
           "group-hover:-translate-y-1 group-hover:shadow-[0_2px_4px_rgba(18,18,15,0.06),0_28px_54px_-28px_rgba(18,18,15,0.34)]",
@@ -108,7 +115,7 @@ export function Frame({
         <div
           className={cn(
             "overflow-hidden bg-paper-deep",
-            boxed && "flex min-h-0 flex-1 items-start justify-center",
+            boxed && "aspect-[16/10] w-full",
           )}
         >
           {image}
@@ -121,14 +128,16 @@ export function Frame({
   return (
     <figure
       className={cn(
-        "overflow-hidden border border-rule bg-paper-deep p-4 sm:p-6",
-        boxed && "flex aspect-[16/10] items-center justify-center",
+        "overflow-hidden border border-rule bg-paper-deep",
+        // Vertical only. Padding the sides as well would narrow the picture,
+        // and a narrower picture at the same ratio is a shorter picture, which
+        // is what left matted plates 31px short of windowed ones. 25px top and
+        // bottom is half the 50px title bar, so the totals match exactly.
+        boxed ? "py-[25px]" : "p-4 sm:p-6",
         className,
       )}
     >
-      <div className={cn("overflow-hidden", boxed && "flex h-full w-full items-center justify-center")}>
-        {image}
-      </div>
+      <div className={cn("overflow-hidden", boxed && "aspect-[16/10] w-full")}>{image}</div>
     </figure>
   );
 }

@@ -314,18 +314,25 @@ export const projects: Project[] = [
     stack: ["Discovery interviews", "Knowledge design", "Escalation rules", "Client delivery"],
     status: "Delivered",
     featured: false,
-    // The artefact for a plate about a product you sell is the thing that
-    // sells it. Not a photograph of a meeting: a meeting photo shows that you
-    // were in a room, which is neither evidence nor specific to this work,
-    // and it reads as stock. This is the section of avernek.com that carries
-    // the argument, which is the part he actually owns.
+    // The product doing its job, rather than the page that sells it.
+    //
+    // Three other candidates were tried and rejected. A second crop of
+    // avernek.com read as plate 01 again. A photograph of a client meeting
+    // proves only that he was in a room. The CRM pipeline would have been the
+    // strongest evidence of all and cannot be shown: it is full of real
+    // names and phone numbers.
+    //
+    // This is the product's own public demo, which the site itself labels an
+    // illustrative preview, so there is no client in it to protect. It also
+    // happens to be the most legible thing on the page: everyone has sent a
+    // business a message and waited.
     cover: {
-      src: "/projects/avernek-system.jpg",
-      alt: "The Avernek site's positioning section: the headline about marketing creating attention, above a table setting a typical setup against the Avernek one across seven rows",
+      src: "/projects/avernek-demo.jpg",
+      alt: "The Avernek demo: a Messenger window showing an inquiry in Nepali asking the weekend IELTS fee, the assistant's reply offering to hold a seat, and a timeline reading reply sent in 6 seconds, interest captured, qualified, team alerted",
       width: 1600,
       height: 1000,
       kind: "site",
-      label: "avernek.com",
+      label: "avernek.com/#demo",
     },
     summary:
       "Businesses running ads collect messages across Facebook, Instagram, WhatsApp, web forms and marketplace listings. Avernek sells the system that answers them. I decide what it does and what it must never do, I sit with the client to find out what the business actually knows, I price it and close it, and our CTO builds it.",
@@ -461,16 +468,30 @@ export const projects: Project[] = [
     stack: ["Canva", "Figma", "AI-generated imagery"],
     status: "Delivered",
     featured: false,
+    // A band off the top of the contact sheet, cut to the plate's own ratio so
+    // it fills the frame instead of sitting in dead ground. The whole sheet is
+    // a figure further down, where there is room to actually read it.
     cover: {
-      src: "/projects/sopdrafts-grid.jpg",
-      alt: "Twenty-five SOPdrafts Nepal post covers in a grid: study-abroad explainers, comparison tables and festival greetings, every one carrying the same green corner fold, maroon headline and contact bar",
+      src: "/projects/sopdrafts-cover.jpg",
+      alt: "Ten SOPdrafts Nepal post covers: study-abroad explainers and a document map, every one carrying the same green corner fold, maroon headline and contact bar",
       width: 1600,
-      height: 1566,
+      height: 1000,
       kind: "artifact",
     },
     summary:
       "Fourteen months designing the static content for SOPdrafts Nepal, an SOP and visa services business in Kathmandu. More than 160 posts, every one a carousel rather than a single frame, plus the festival greetings a Nepali audience expects a company to show up for.",
     chapters: [
+      {
+        kind: "figure",
+        src: "/projects/sopdrafts-grid.jpg",
+        alt: "Twenty-five SOPdrafts Nepal post covers in a grid: study-abroad explainers, comparison tables and festival greetings, every one carrying the same green corner fold, maroon headline and contact bar",
+        caption:
+          "Twenty-five of the openers. The corner fold, the maroon headline and the contact bar are the same in every one, which is the entire job.",
+        width: 1600,
+        height: 1566,
+        frame: "artifact",
+        wide: true,
+      },
       {
         kind: "prose",
         heading: "The job was consistency, not posts",
@@ -510,7 +531,15 @@ export const projects: Project[] = [
     stack: ["CapCut", "Figma", "TikTok · YouTube", "Instagram · Facebook"],
     status: "Ongoing",
     featured: false,
-    cover: { src: "/projects/mountain-routes-1.jpg", alt: "An Everest Base Camp with Gokyo Lakes itinerary designed for Mountain Routes, showing the route map, day-by-day breakdown and trip statistics", width: 1400, height: 1400, kind: "artifact" },
+    // The title and route map, cut to the plate ratio. The full itinerary,
+    // including the day-by-day and the statistics bar, is the figure below.
+    cover: {
+      src: "/projects/mountain-routes-cover.jpg",
+      alt: "The top of an Everest Base Camp with Gokyo Lakes itinerary designed for Mountain Routes, showing the title and the route map",
+      width: 1400,
+      height: 875,
+      kind: "artifact",
+    },
     summary:
       "Mountain Routes sells treks in Nepal to people in Europe, North America and Australia. The whole problem is that the audience has never been here and is deciding whether to trust a company they found on a phone.",
     clearance: unverified(
