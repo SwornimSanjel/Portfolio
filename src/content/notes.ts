@@ -32,7 +32,7 @@ export const notes: Note[] = [
       "Raising a price with an existing client is a conversation about you. Setting it correctly at the start is a conversation about the work. Those are very different meetings and only one of them is comfortable.",
       "What I'd tell myself: a discount is fine if it's visible and temporary. Write the real price down, then show the reduction. A quiet low price isn't a discount, it's just your price.",
     ],
-    status: "draft",
+    status: "published",
   },
   {
     slug: "deciding-what-it-wont-do",
@@ -46,7 +46,7 @@ export const notes: Note[] = [
       "We wrote the opposite into the project's own rules: no hours logged, no activity heatmaps, no last-seen, no screenshots. The board shows the deadline and the state, and never when someone was working. The note says that if a future version of me asks for it, refuse and point back at the reason.",
       "The thinking is simple. Measuring presence tells you who is at their desk. Measuring commitments tells you who does what they said. Only one of those is the thing I actually care about, and building the first would have quietly replaced the second.",
     ],
-    status: "draft",
+    status: "published",
   },
   {
     slug: "what-they-asked-for",
@@ -60,7 +60,7 @@ export const notes: Note[] = [
       "What they wanted was to stop losing people they'd already paid to reach. Automatic replies are one possible shape of that. Knowing which enquiries are urgent is another. Knowing which ones a machine must never answer turned out to matter more than either.",
       "The interview is the work. If I take the brief literally I build the thing they described; if I take it seriously I build the thing they meant.",
     ],
-    status: "draft",
+    status: "published",
   },
   {
     slug: "shipping-before-ready",
@@ -73,7 +73,7 @@ export const notes: Note[] = [
       "There's a version of founder work that looks productive and isn't. Polishing something nobody has asked to see is at the top of that list, and it's especially seductive when you're the person who can build it.",
       "Now the test is simple: is there someone specific who will see this within a week? If not, it's not the thing to be doing today.",
     ],
-    status: "draft",
+    status: "published",
   },
 ];
 
