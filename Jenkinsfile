@@ -140,7 +140,7 @@ pipeline {
 
                     echo "--- assets are served pre-compressed and immutable"
                     ASSET=$(curl -fsS "http://localhost:${PORT}/" \
-                            | grep -o '/assets/[^"]*\.js' | head -n1)
+                            | grep -o '/assets/[^"]*\\.js' | head -n1)
                     curl -fsS -H 'Accept-Encoding: gzip' -D- -o /dev/null \
                          "http://localhost:${PORT}${ASSET}" \
                          | grep -qi 'content-encoding: gzip'
