@@ -31,10 +31,15 @@ const dist = path.join(root, "dist");
 const PORT = 4199;
 
 const BROWSERS = [
+  process.env.CHROME_PATH,
+  // Alpine/Debian container installs, for CI.
+  "/usr/bin/chromium-browser",
+  "/usr/bin/chromium",
+  "/usr/bin/google-chrome",
+  // Local development on macOS.
   "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
   "/Applications/Chromium.app/Contents/MacOS/Chromium",
-  process.env.CHROME_PATH,
 ].filter(Boolean);
 
 const browser = BROWSERS.find((b) => spawnSync("test", ["-x", b]).status === 0);
@@ -81,6 +86,11 @@ try {
       [
         "--headless",
         "--disable-gpu",
+        // Required when the build runs as root in a container, and harmless
+        // otherwise. /dev/shm is small in Docker and Chromium will crash
+        // without the second flag.
+        "--no-sandbox",
+        "--disable-dev-shm-usage",
         "--hide-scrollbars",
         "--force-prefers-reduced-motion",
         "--virtual-time-budget=8000",
