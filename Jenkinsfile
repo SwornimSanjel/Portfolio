@@ -11,6 +11,10 @@
 //
 // The agent needs Docker and nothing else. There is no Node on the agent, no
 // `npm ci` on the agent, and therefore no agent-side workspace to keep warm.
+//
+// The container is published on the loopback interface only. Caddy on the host
+// owns :80/:443, terminates TLS for swornim.avernek.com and reverse-proxies to
+// HOST_PORT — so nothing here should ever be reachable from outside the box.
 // ---------------------------------------------------------------------------
 
 pipeline {
@@ -18,7 +22,6 @@ pipeline {
 
     options {
         timestamps()
-   
         timeout(time: 15, unit: 'MINUTES')
         disableConcurrentBuilds()
         buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '5'))
@@ -30,20 +33,31 @@ pipeline {
     parameters {
         string(
             name: 'SITE_URL',
-            defaultValue: 'https://swornimsanjel.com',
+            defaultValue: 'https://swornim.avernek.com',
             description: 'Canonical origin. Baked into canonical URLs, OG tags, sitemap.xml and robots.txt at build time.'
         )
         string(
             name: 'HOST_PORT',
-            defaultValue: '8080',
-            description: 'Host port the running container is published on.'
+            defaultValue: '2345',
+            description: 'Loopback port the container is published on. Must match the reverse_proxy upstream in the host Caddyfile.'
         )
     }
 
     environment {
-        IMAGE          = 'swornim-portfolio'
-        CONTAINER      = 'swornim-portfolio'
+        IMAGE           = 'swornim-portfolio'
+        CONTAINER       = 'swornim-portfolio'
         DOCKER_BUILDKIT = '1'
+
+        // Jenkins only registers a `parameters` block on the job *after* a run
+        // has completed with it, so the first build following a change here
+        // sees no params at all and `set -u` kills the shell. Resolving them
+        // through the environment gives every step a value on every run,
+        // first one included.
+        SITE_URL  = "${params.SITE_URL ?: 'https://swornim.avernek.com'}"
+        HOST_PORT = "${params.HOST_PORT ?: '2345'}"
+
+        // Loopback only. Caddy is the only thing that should reach the app.
+        BIND_ADDR = '127.0.0.1'
     }
 
     stages {
@@ -55,8 +69,7 @@ pipeline {
                     branches: scm.branches,
                     userRemoteConfigs: scm.userRemoteConfigs,
                     extensions: [
-                        cloneOption(shallow: true, depth: 1, noTags: true),
-                        [$class: 'CloneOption', honorRefspec: true]
+                        cloneOption(shallow: true, depth: 1, noTags: true, honorRefspec: true)
                     ]
                 )
                 script {
@@ -66,7 +79,7 @@ pipeline {
                     ).trim()
                     env.TAG = "${env.BUILD_NUMBER}-${env.GIT_SHA}"
                 }
-                echo "Building ${env.IMAGE}:${env.TAG}"
+                echo "Building ${env.IMAGE}:${env.TAG} for ${env.SITE_URL}"
             }
         }
 
@@ -74,11 +87,16 @@ pipeline {
             steps {
                 // Typecheck and `vite build` both run inside this, in the
                 // build stage of the Dockerfile.
+                //
+                // No --cache-from: the image is built and run on the same
+                // daemon, so BuildKit's local layer cache already covers the
+                // rebuild. Importing from a tag is pure overhead here, and it
+                // fails outright on the first build, when :latest does not
+                // exist yet.
                 sh '''
                     set -eu
                     docker build \
                         --build-arg VITE_SITE_URL="${SITE_URL}" \
-                        --cache-from "${IMAGE}:latest" \
                         --tag "${IMAGE}:${TAG}" \
                         --tag "${IMAGE}:latest" \
                         .
@@ -98,7 +116,7 @@ pipeline {
 
                     PORT=$(docker port "$CID" 80/tcp | head -n1 | sed 's/.*://')
 
-                    # nginx is up in well under a second; poll rather than sleep.
+                    # Caddy is up in well under a second; poll rather than sleep.
                     for i in $(seq 1 30); do
                         if curl -fsS "http://localhost:${PORT}/" >/dev/null 2>&1; then break; fi
                         [ "$i" = "30" ] && { echo "server never came up"; docker logs "$CID"; exit 1; }
@@ -114,6 +132,9 @@ pipeline {
                     echo "--- generated files are present"
                     curl -fsS "http://localhost:${PORT}/sitemap.xml" | grep -q '<urlset'
                     curl -fsS "http://localhost:${PORT}/robots.txt"  | grep -q 'Sitemap:'
+
+                    echo "--- the built origin is the one we asked for"
+                    curl -fsS "http://localhost:${PORT}/sitemap.xml" | grep -q "${SITE_URL}"
 
                     echo "--- assets are served pre-compressed and immutable"
                     ASSET=$(curl -fsS "http://localhost:${PORT}/" \
@@ -135,14 +156,13 @@ pipeline {
                     docker run -d \
                         --name "${CONTAINER}" \
                         --restart unless-stopped \
-                        -p "${HOST_PORT}:80" \
+                        -p "${BIND_ADDR}:${HOST_PORT}:80" \
                         --memory 128m \
                         --read-only \
-                        --tmpfs /var/cache/nginx \
-                        --tmpfs /var/run \
+                        --tmpfs /tmp \
                         "${IMAGE}:${TAG}"
                 '''
-                echo "Deployed ${env.IMAGE}:${env.TAG} on port ${params.HOST_PORT}"
+                echo "Deployed ${env.IMAGE}:${env.TAG} on ${env.BIND_ADDR}:${env.HOST_PORT}"
             }
         }
     }

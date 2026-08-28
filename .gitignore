@@ -5,3 +5,7 @@ dist
 .env*
 !.env.example
 .vercel
+
+# Leftovers from the Next.js build; the project is Vite now.
+.next
+next-env.d.ts

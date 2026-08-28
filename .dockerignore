@@ -18,3 +18,4 @@ Dockerfile
 .dockerignore
 Jenkinsfile
 README.md
+.next
