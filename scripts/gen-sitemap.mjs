@@ -17,7 +17,7 @@ import { pathToFileURL } from "node:url";
 
 const root = path.resolve(import.meta.dirname, "..");
 const dist = path.join(root, "dist");
-const siteUrl = (process.env.VITE_SITE_URL ?? "https://swornimsanjel.com").replace(/\/$/, "");
+const siteUrl = (process.env.VITE_SITE_URL ?? "https://swornim.avernek.com").replace(/\/$/, "");
 
 const tmp = await mkdtemp(path.join(tmpdir(), "sitemap-"));
 const bundle = path.join(tmp, "content.mjs");

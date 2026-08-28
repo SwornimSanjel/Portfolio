@@ -1,14 +1,7 @@
-import { unverified } from "@/content/verify";
 import { archive } from "@/content/archive";
 
 export const siteUrl =
-  import.meta.env.VITE_SITE_URL ?? "https://swornimsanjel.com";
-
-/** TODO: confirm the domain before launch — canonical URLs and OG tags depend on it. */
-export const domainQuestion = unverified(
-  siteUrl,
-  "What domain will this ship on? Canonical URLs, the sitemap and OpenGraph tags all depend on it.",
-);
+  import.meta.env.VITE_SITE_URL ?? "https://swornim.avernek.com";
 
 type NavItem = { label: string; href: string };
 

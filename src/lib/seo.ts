@@ -16,6 +16,9 @@ import { profile } from "@/content/profile";
  * unfurler, say — the fix is prerendering at build time, not a framework:
  * see README, "If you ever need per-page HTML".
  */
+/** The ink and paper grounds, for the browser chrome above the page. */
+const THEME = { dark: "#12120f", light: "#f7f5f0" } as const;
+
 export type Seo = {
   /** Page title. The site name is appended, matching the old title template. */
   title?: string;
@@ -23,6 +26,14 @@ export type Seo = {
   /** Path, e.g. "/work/avernek". Resolved against the site origin. */
   canonical?: string;
   ogType?: "website" | "article";
+  /**
+   * What the top of this page actually is. `theme-color` paints the browser
+   * chrome around the viewport on a phone, and it was hardcoded to paper in
+   * index.html — so on the homepage, whose hero is inked, the status bar
+   * rendered cream directly above a near-black page. A single static value
+   * cannot be right for a site with both light and dark page tops.
+   */
+  topGround?: "light" | "dark";
 };
 
 const DEFAULT_TITLE = `${profile.name} · ${profile.role}`;
@@ -47,7 +58,13 @@ function setCanonical(href: string) {
   el.href = href;
 }
 
-export function useSeo({ title, description, canonical, ogType = "website" }: Seo) {
+export function useSeo({
+  title,
+  description,
+  canonical,
+  ogType = "website",
+  topGround = "light",
+}: Seo) {
   useEffect(() => {
     const fullTitle = title ? `${title} · ${profile.name}` : DEFAULT_TITLE;
     const desc = description ?? profile.claim;
@@ -61,6 +78,7 @@ export function useSeo({ title, description, canonical, ogType = "website" }: Se
     setMeta('meta[property="og:url"]', "property", "og:url", url);
     setMeta('meta[name="twitter:title"]', "name", "twitter:title", fullTitle);
     setMeta('meta[name="twitter:description"]', "name", "twitter:description", desc);
+    setMeta('meta[name="theme-color"]', "name", "theme-color", THEME[topGround]);
     setCanonical(url);
-  }, [title, description, canonical, ogType]);
+  }, [title, description, canonical, ogType, topGround]);
 }

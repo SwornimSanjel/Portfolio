@@ -26,6 +26,7 @@ export function useMagnetic<T extends HTMLElement>(strength = 0.18, radius = 90)
     // moves when the page scrolls or resizes, so recompute there instead.
     let cx = 0;
     let cy = 0;
+    let stale = true;
 
     const measure = () => {
       // Read the untransformed centre: subtract any pull already applied.
@@ -37,6 +38,18 @@ export function useMagnetic<T extends HTMLElement>(strength = 0.18, radius = 90)
     measure();
 
     const onMove = (event: PointerEvent) => {
+      // Re-measure lazily, here, rather than on the scroll event itself.
+      // getBoundingClientRect forces a synchronous layout, and this hook is
+      // mounted on several elements at once, so measuring on scroll meant one
+      // forced layout per instance per scroll event for a value nothing reads
+      // until the pointer next moves. Scrolling only marks the cache dirty
+      // now; the cost lands on the first pointermove afterwards, which is the
+      // moment it is actually needed.
+      if (stale) {
+        measure();
+        stale = false;
+      }
+
       const dx = event.clientX - cx;
       const dy = event.clientY - cy;
 
@@ -64,15 +77,19 @@ export function useMagnetic<T extends HTMLElement>(strength = 0.18, radius = 90)
       el.style.transform = "";
     };
 
+    const invalidate = () => {
+      stale = true;
+    };
+
     window.addEventListener("pointermove", onMove, { passive: true });
-    window.addEventListener("scroll", measure, { passive: true });
-    window.addEventListener("resize", measure, { passive: true });
+    window.addEventListener("scroll", invalidate, { passive: true });
+    window.addEventListener("resize", invalidate, { passive: true });
     window.addEventListener("blur", reset);
 
     return () => {
       window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("scroll", measure);
-      window.removeEventListener("resize", measure);
+      window.removeEventListener("scroll", invalidate);
+      window.removeEventListener("resize", invalidate);
       window.removeEventListener("blur", reset);
       cancelAnimationFrame(frame);
     };

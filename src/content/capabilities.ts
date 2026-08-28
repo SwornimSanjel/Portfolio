@@ -1,9 +1,16 @@
 /**
  * Capabilities, not skill bars. No percentages, no proficiency claims.
  *
- * Ordered by what he actually spends his time on. Design first because it is
- * the deepest skill; automation and ads are deliberately absent because other
- * people at Avernek own them.
+ * Ordered by what he actually spends his time on, which is the business.
+ *
+ * Design used to lead this list, on the grounds that it is the deepest skill.
+ * That was the wrong axis. A founder's capability list that opens with craft
+ * reads as a designer's list, and the first thing a reader takes from the
+ * order is the job you think you have. Craft still appears; it appears last,
+ * which is where it sits relative to running the company.
+ *
+ * Automation and ads are deliberately absent because other people at Avernek
+ * own them.
  */
 export type CapabilityGroup = {
   id: string;
@@ -13,19 +20,6 @@ export type CapabilityGroup = {
 };
 
 export const capabilities: CapabilityGroup[] = [
-  {
-    id: "design",
-    title: "Design",
-    premise: "The deepest thing I do. Mostly UI, mostly in Figma, for a long time.",
-    items: [
-      "Interface design",
-      "User flows and information architecture",
-      "Prototyping",
-      "Design systems and components",
-      "Responsive layout",
-      "Brand and social content design",
-    ],
-  },
   {
     id: "business",
     title: "Business & sales",
@@ -63,6 +57,19 @@ export const capabilities: CapabilityGroup[] = [
       "Customer success and retention",
       "Social design",
       "Monthly client reporting",
+    ],
+  },
+  {
+    id: "design",
+    title: "Design",
+    premise: "Where I came from, and still how I look at a product. Mostly UI, mostly in Figma.",
+    items: [
+      "Interface design",
+      "User flows and information architecture",
+      "Prototyping",
+      "Design systems and components",
+      "Responsive layout",
+      "Brand and social content design",
     ],
   },
 ];

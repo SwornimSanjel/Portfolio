@@ -28,7 +28,7 @@ import { useSeo } from "@/lib/seo";
  * appendix rather than as the argument.
  */
 export default function HomePage() {
-  useSeo({ canonical: "/" });
+  useSeo({ canonical: "/", topGround: "dark" });
 
   const rest = projects.filter((p) => !p.featured);
   // Same reason as the Work page headline: these two counts kept drifting out

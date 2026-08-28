@@ -35,6 +35,7 @@ export function Plate({ project, priority }: { project: Project; priority?: bool
           <Frame
             cover={project.cover}
             priority={priority}
+            boxed
             zoomOnHover
             sizes="(min-width: 1280px) 620px, (min-width: 768px) 46vw, 100vw"
           />
@@ -76,7 +77,7 @@ export function Plate({ project, priority }: { project: Project; priority?: bool
  */
 function PendingPlate({ project }: { project: Project }) {
   return (
-    <div className="plate-grid flex aspect-[16/11] flex-col justify-between rounded-md border border-rule bg-paper-deep p-6 sm:p-8">
+    <div className="plate-grid flex aspect-[16/10] flex-col justify-between rounded-md border border-rule bg-paper-deep p-6 sm:p-8">
       {/* This used to draw the plate number at 6rem in 10% ink.
       
           Only the plates *without* a screenshot did, because only they had

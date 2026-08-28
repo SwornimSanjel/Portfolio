@@ -112,14 +112,30 @@ export function Nav() {
       sections = Array.from(document.querySelectorAll<HTMLElement>(".inverted"));
     };
 
+    // Both values are latched. A scroll handler that calls setState on every
+    // event asks React to reconcile on every frame of a scroll, even when the
+    // answer has not changed; React bails out on an identical value, but only
+    // after re-entering the render path. Comparing first keeps scrolling
+    // entirely outside React until one of these two booleans actually flips,
+    // which on a normal page is a handful of times.
+    let liftedNow = window.scrollY > 24;
+    let darkNow: boolean | null = null;
+
     const update = () => {
-      setLifted(window.scrollY > 24);
-      setOverDark(
-        sections.some((el) => {
-          const { top, bottom } = el.getBoundingClientRect();
-          return top <= band && bottom >= band;
-        }),
-      );
+      const nextLifted = window.scrollY > 24;
+      if (nextLifted !== liftedNow) {
+        liftedNow = nextLifted;
+        setLifted(nextLifted);
+      }
+
+      const nextDark = sections.some((el) => {
+        const { top, bottom } = el.getBoundingClientRect();
+        return top <= band && bottom >= band;
+      });
+      if (nextDark !== darkNow) {
+        darkNow = nextDark;
+        setOverDark(nextDark);
+      }
     };
 
     // The section list cannot be captured once and trusted. Routes are code
@@ -130,6 +146,7 @@ export function Nav() {
     // others. Re-read on a short ladder, then settle.
     const settle = () => {
       refresh();
+      darkNow = null; // force one re-evaluation against the new section list
       update();
     };
 

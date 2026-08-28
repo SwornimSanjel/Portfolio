@@ -11,6 +11,13 @@ export type EducationEntry = {
   emphasis: "primary" | "secondary";
 };
 
+/**
+ * Kept deliberately short. School-level results and GPAs were listed here and
+ * have been removed: on a founder's page they compete with the work for
+ * attention and lose, and a reader deciding whether to hire the company is
+ * not weighing a +2 grade. The degree in progress is the only credential
+ * that carries any signal, so it is the only one given room.
+ */
 export const education: EducationEntry[] = [
   {
     id: "herald",
@@ -34,15 +41,6 @@ export const education: EducationEntry[] = [
     ),
     qualification: "+2, Science",
     display: "Aug 2022 to May 2024",
-    result: "GPA 3.58 / 4.0 · A",
-    emphasis: "secondary",
-  },
-  {
-    id: "school",
-    institution: "United Academy",
-    qualification: "School, grades 1 to 10 (SEE)",
-    display: "Until 2022",
-    result: "GPA 3.75 / 4.0 · A+",
     emphasis: "secondary",
   },
 ];

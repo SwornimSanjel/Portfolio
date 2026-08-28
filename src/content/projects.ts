@@ -314,12 +314,19 @@ export const projects: Project[] = [
     stack: ["Discovery interviews", "Knowledge design", "Escalation rules", "Client delivery"],
     status: "Delivered",
     featured: false,
-    // No screenshot yet. `/projects/avernek-system.jpg` was referenced here
-    // but has never existed, so the plate rendered a broken-image box with the
-    // alt text spilled across it. Coverless is a state the design already
-    // handles — `PendingPlate` — and a designed placeholder beats a broken
-    // one. Restore this line the day the file lands.
-    // cover: { src: "/projects/avernek-system.jpg", alt: "The Avernek site's lead-response decay chart and the typical-setup versus with-Avernek comparison table", width: 1600, height: 1150, kind: "site", label: "avernek.com" },
+    // The artefact for a plate about a product you sell is the thing that
+    // sells it. Not a photograph of a meeting: a meeting photo shows that you
+    // were in a room, which is neither evidence nor specific to this work,
+    // and it reads as stock. This is the section of avernek.com that carries
+    // the argument, which is the part he actually owns.
+    cover: {
+      src: "/projects/avernek-system.jpg",
+      alt: "The Avernek site's positioning section: the headline about marketing creating attention, above a table setting a typical setup against the Avernek one across seven rows",
+      width: 1600,
+      height: 1000,
+      kind: "site",
+      label: "avernek.com",
+    },
     summary:
       "Businesses running ads collect messages across Facebook, Instagram, WhatsApp, web forms and marketplace listings. Avernek sells the system that answers them. I decide what it does and what it must never do, I sit with the client to find out what the business actually knows, I price it and close it, and our CTO builds it.",
     clearance: unverified(
@@ -386,8 +393,14 @@ export const projects: Project[] = [
     // status the type system has four legitimate values for.
     status: "Delivered",
     featured: false,
-    // TODO: needs a screenshot — the Figma board exists (student portal,
-    // moderator portal, and the final combined frame). See README.
+    cover: {
+      src: "/projects/hck-core-landing.jpg",
+      alt: "The HCK Core landing page as built: the dark navigation bar, the headline about curated academic sharing, and the panel naming Herald College",
+      width: 1600,
+      height: 899,
+      kind: "site",
+      label: "HCK Core",
+    },
     external: {
       label: "Development Platform HCK on LinkedIn",
       href: "https://www.linkedin.com/posts/development-platform-hck_%F0%9D%90%81%F0%9D%90%AE%F0%9D%90%A2%F0%9D%90%A5%F0%9D%90%AD-%F0%9D%90%9F%F0%9D%90%A8%F0%9D%90%AB-%F0%9D%90%9E%F0%9D%90%9D%F0%9D%90%AE%F0%9D%90%9C%F0%9D%90%9A%F0%9D%90%AD%F0%9D%90%A8%F0%9D%90%AB%F0%9D%90%AC-%F0%9D%90%9D%F0%9D%90%9E%F0%9D%90%AC%F0%9D%90%A2%F0%9D%90%A0%F0%9D%90%A7%F0%9D%90%9E%F0%9D%90%9D-activity-7408386834533376000-J7Vx",
@@ -395,6 +408,17 @@ export const projects: Project[] = [
     summary:
       "HCK Core is a resource-sharing platform with separate student and moderator portals, covering academic modules, extra learning resources and community features. I was the only person doing UI/UX on it. The college's development team later built it, with modifications, and published it.",
     chapters: [
+      {
+        kind: "figure",
+        src: "/projects/hck-core-figma.jpg",
+        alt: "The HCK Core Figma file: two labelled component libraries for the student and moderator portals, with screen frames for the landing page, login, dashboard, module resources, submissions and settings",
+        caption:
+          "The file the build came from. Both portals, their component libraries, and every screen state, drawn before anything was written.",
+        width: 1600,
+        height: 900,
+        frame: "artifact",
+        wide: true,
+      },
       {
         kind: "prose",
         heading: "Two portals, one system",
@@ -431,30 +455,44 @@ export const projects: Project[] = [
       "Static brand and social content for an SOP and visa services business, run long enough that consistency became the product.",
     discipline: "Brand · Content design",
     year: "2025/26",
-    role: ["Brand content design", "Social design", "Visual consistency"],
-    stack: ["Figma", "Canva", "AI-assisted imagery"],
+    role: ["Brand content design", "Carousel design", "Visual consistency"],
+    // Canva first, because that is the truth of it. Figma for the pieces that
+    // had to be exact, and generated imagery where a stock photo would not do.
+    stack: ["Canva", "Figma", "AI-generated imagery"],
     status: "Delivered",
     featured: false,
-    // TODO: needs plates. The work is posted publicly on the SOPdrafts Nepal
-    // and personal LinkedIn/TikTok accounts — pick four or five and export
-    // them at a consistent ratio. See README, "Images still needed".
+    cover: {
+      src: "/projects/sopdrafts-grid.jpg",
+      alt: "Twenty-five SOPdrafts Nepal post covers in a grid: study-abroad explainers, comparison tables and festival greetings, every one carrying the same green corner fold, maroon headline and contact bar",
+      width: 1600,
+      height: 1566,
+      kind: "artifact",
+    },
     summary:
-      "Fourteen months designing the static content for SOPdrafts Nepal, an SOP and visa services business in Kathmandu. Posts, brand updates, and the small pieces that make a small company look like the same company every week.",
+      "Fourteen months designing the static content for SOPdrafts Nepal, an SOP and visa services business in Kathmandu. More than 160 posts, every one a carousel rather than a single frame, plus the festival greetings a Nepali audience expects a company to show up for.",
     chapters: [
       {
         kind: "prose",
         heading: "The job was consistency, not posts",
         body: [
           "Anyone can make one good post. The reason this ran for fourteen months is that a services business selling something as consequential as a visa application is judged on whether it looks like it has its act together, and a feed that changes character every fortnight says the opposite.",
-          "So the work was mostly restraint: one type treatment, one colour behaviour, one way of handling a headline, applied week after week until the account was recognisable without the logo.",
+          "So the work was mostly restraint. One corner fold, one maroon for headlines, one contact bar along the bottom, applied post after post until the account was recognisable before anyone read the logo. The grid above is only the opening frame of each carousel; behind every one of them sit four to eight more.",
         ],
       },
       {
         kind: "prose",
-        heading: "Figma, Canva, and AI where it earned its place",
+        heading: "Why every post is a carousel",
         body: [
-          "Figma for anything that had to be exact or reused. Canva when the client needed to edit something themselves after I had handed it over. A template somebody can actually maintain is worth more than a file only I can open.",
-          "AI for imagery and variations, never for the decision about what the post was for. It shortens the distance between an idea and something you can look at, which on a weekly cadence is most of the work.",
+          "A single frame can hold a greeting. It cannot hold the difference between an SOP, a motivation letter and a personal statement, and that difference is the thing a student is actually confused about.",
+          "So the format is a cover that earns the tap and then the substance behind it: the document map, the test comparison, the reasons a visa gets refused a second time. The cover is marketing and the inside is the service, which is also how the business itself works.",
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "Canva first, then Figma, then AI",
+        body: [
+          "Canva carried most of it, because a template the client can open and adjust after handover is worth more than a file only I can maintain. Figma for anything that had to be exact or reused across the set.",
+          "Generated imagery for the illustrations, which is what makes this workable at volume: a study-abroad document map or a scholarship illustration has no usable stock equivalent, and commissioning each one was never going to fit the budget. What was never generated is the decision about what a post is for, or the claims inside it. This is a business where a wrong detail costs a student an application.",
         ],
       },
     ],
@@ -469,7 +507,7 @@ export const projects: Project[] = [
     discipline: "Growth · Content strategy",
     year: "2026",
     role: ["Content strategy", "Short-form video", "Design", "Monthly reporting"],
-    stack: ["Instagram", "Facebook", "Figma", "CapCut"],
+    stack: ["CapCut", "Figma", "TikTok · YouTube", "Instagram · Facebook"],
     status: "Ongoing",
     featured: false,
     cover: { src: "/projects/mountain-routes-1.jpg", alt: "An Everest Base Camp with Gokyo Lakes itinerary designed for Mountain Routes, showing the route map, day-by-day breakdown and trip statistics", width: 1400, height: 1400, kind: "artifact" },
@@ -507,14 +545,32 @@ export const projects: Project[] = [
           "So the format leads with the map and the numbers. Altitudes on every stop, acclimatisation days marked, the flight legs drawn separately from the walking. It is denser than a normal social post on purpose: density reads as competence, and competence is the thing being sold.",
         ],
       },
+      // A second itinerary belongs here, to show the format holding across
+      // routes. `/projects/mountain-routes-2.jpg` was referenced but never
+      // existed, so the page rendered an empty matted frame with a caption
+      // under it. Restore the figure when the file lands.
       {
-        kind: "figure",
-        src: "/projects/mountain-routes-2.jpg",
-        alt: "A second Mountain Routes trek itinerary in the same visual system.",
-        width: 1400,
-        height: 1400,
-        caption: "The same system applied to another route. One format, so the account starts to look like a company rather than a feed.",
-        wide: true,
+        kind: "spec",
+        heading: "The cadence",
+        rows: [
+          { label: "TikTok and YouTube", value: "3 to 5 videos a day, the same set on both" },
+          { label: "Instagram and Facebook", value: "1 to 2 a day, the same set on both, different from the TikTok set" },
+          { label: "Monthly", value: "350 to 400 posts across the four platforms" },
+          {
+            label: "Delivered",
+            value:
+              "2,800+ uploads. That counts each platform separately and is not a count of unique videos, because one edit goes to two places",
+          },
+          { label: "Also", value: "Static festival posts, in the same house style as the video thumbnails" },
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "How one person ships at that rate",
+        body: [
+          "The number above is only interesting if the pipeline behind it is honest, so: edits are cut in CapCut, thumbnails are built in Figma against a fixed template, and captions and the occasional generated still come from an assistant rather than being written from scratch each time. Monthly reporting figures are pulled and summarised the same way.",
+          "None of that decides what to post. It removes the part of the job that is retyping, which is what makes a daily cadence survivable for one person alongside a company. The judgement about which route, which season and which objection a foreign trekker is actually carrying is the part that cannot be automated, and it is the part that makes the account work.",
+        ],
       },
       {
         kind: "prose",

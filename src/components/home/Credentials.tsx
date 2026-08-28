@@ -29,7 +29,11 @@ export function Credentials() {
   ];
 
   return (
-    <dl className="grid gap-px overflow-hidden rounded-xl border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-4">
+        // Two columns from the smallest screen up, not one. Four full-width rows
+    // pushed the phone hero to nearly a screen and a half of unbroken dark
+    // before any work appeared, which is most of why the site reads as a
+    // different theme on a phone than on a laptop.
+    <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-rule bg-rule lg:grid-cols-4">
       {facts.map((fact) => (
         <div key={fact.label} className="bg-paper/60 px-5 py-6 sm:px-6">
           {/* `meta` resolves to muted, which measures 4.2:1 against this card

@@ -25,12 +25,28 @@ export function Frame({
   sizes = "(min-width: 1024px) 620px, 100vw",
   priority,
   zoomOnHover,
+  boxed,
 }: {
   cover: Cover;
   className?: string;
   sizes?: string;
   priority?: boolean;
   zoomOnHover?: boolean;
+  /**
+   * Mat the cover into one fixed 16:10 footprint.
+   *
+   * Used by the index grid, and only there. Covers are authored at whatever
+   * proportion the thing actually is: browser screenshots at 16:10, a Figma
+   * board at 16:9, a square contact sheet, a square itinerary. Shown at their
+   * own ratio side by side, the rows end at different heights and the grid
+   * looks accidental.
+   *
+   * The fix is a mat, not a crop. The box is fixed, the image is contained
+   * inside it, and anything narrower than the box gets margins rather than
+   * losing its edges. Case study pages pass nothing and still get the image
+   * whole, at its real proportion, which is where that matters.
+   */
+  boxed?: boolean;
 }) {
   const image = (
     <Image
@@ -41,7 +57,7 @@ export function Frame({
       sizes={sizes}
       priority={priority}
       className={cn(
-        "h-auto w-full",
+        boxed ? "h-full w-full object-contain" : "h-auto w-full",
         zoomOnHover &&
           "transition-transform duration-[900ms] ease-rule group-hover:scale-[1.03]",
       )}
@@ -53,6 +69,10 @@ export function Frame({
       <figure
         className={cn(
           "overflow-hidden rounded-lg border border-rule bg-paper-deep",
+          // The ratio is on the window, not the screenshot, so the title bar
+          // is inside the measurement and a site plate ends level with an
+          // artifact plate beside it.
+          boxed && "flex aspect-[16/10] flex-col",
           "shadow-[0_1px_2px_rgba(18,18,15,0.04),0_16px_36px_-26px_rgba(18,18,15,0.25)]",
           "transition-all duration-500 ease-rule",
           "group-hover:-translate-y-1 group-hover:shadow-[0_2px_4px_rgba(18,18,15,0.06),0_28px_54px_-28px_rgba(18,18,15,0.34)]",
@@ -71,7 +91,7 @@ export function Frame({
 
             The bar itself is glass, which is also literal. A real window
             titlebar is translucent over its own content. */}
-        <div className="glass-bar flex items-center gap-2 border-b border-rule px-4 py-3">
+        <div className="glass-bar flex shrink-0 items-center gap-2 border-b border-rule px-4 py-3">
           <span aria-hidden="true" className="flex shrink-0 gap-2">
             <i className="block h-3 w-3 rounded-full bg-[#FF5F57] shadow-[inset_0_0_0_0.5px_rgba(0,0,0,0.14)]" />
             <i className="block h-3 w-3 rounded-full bg-[#FEBC2E] shadow-[inset_0_0_0_0.5px_rgba(0,0,0,0.14)]" />
@@ -85,7 +105,14 @@ export function Frame({
           {/* Balances the controls so the address field sits truly centred. */}
           <span aria-hidden="true" className="w-[52px] shrink-0" />
         </div>
-        <div className="overflow-hidden bg-paper-deep">{image}</div>
+        <div
+          className={cn(
+            "overflow-hidden bg-paper-deep",
+            boxed && "flex min-h-0 flex-1 items-start justify-center",
+          )}
+        >
+          {image}
+        </div>
       </figure>
     );
   }
@@ -95,10 +122,13 @@ export function Frame({
     <figure
       className={cn(
         "overflow-hidden border border-rule bg-paper-deep p-4 sm:p-6",
+        boxed && "flex aspect-[16/10] items-center justify-center",
         className,
       )}
     >
-      <div className="overflow-hidden">{image}</div>
+      <div className={cn("overflow-hidden", boxed && "flex h-full w-full items-center justify-center")}>
+        {image}
+      </div>
     </figure>
   );
 }
