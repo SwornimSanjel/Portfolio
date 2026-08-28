@@ -36,15 +36,21 @@ export default function AboutPage() {
             </div>
             <div className="md:col-span-5 md:col-start-8">
               {/* The one page that is about a person should have the person on
-                  it. Fixed ratio so the column never reflows as it loads. */}
+                  it.
+
+                  width/height are the file's real pixels (960x1280), so the
+                  browser reserves exactly the right box and the column cannot
+                  reflow as it loads. The aspect class matches that same 3:4,
+                  which means object-cover has nothing to crop: the photo is
+                  shown whole, the way the project screenshots are. */}
               <figure className="overflow-hidden rounded-md border border-rule bg-paper-deep">
                 <Img
-                  src="/images/swornim-portrait.webp"
-                  alt={`${profile.name}, ${profile.roleShort}`}
-                  width={1629}
-                  height={2000}
+                  src="/images/swornim-lounge.jpg"
+                  alt={`${profile.name}, ${profile.roleShort}, in Lalitpur`}
+                  width={960}
+                  height={1280}
                   priority
-                  className="aspect-[4/5] h-auto w-full object-cover"
+                  className="aspect-[3/4] h-auto w-full object-cover"
                 />
               </figure>
               <dl className="mt-6 border-t border-rule pt-5">
