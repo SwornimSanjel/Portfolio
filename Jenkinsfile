@@ -30,34 +30,26 @@ pipeline {
         skipDefaultCheckout(true)
     }
 
-    parameters {
-        string(
-            name: 'SITE_URL',
-            defaultValue: 'https://swornim.avernek.com',
-            description: 'Canonical origin. Baked into canonical URLs, OG tags, sitemap.xml and robots.txt at build time.'
-        )
-        string(
-            name: 'HOST_PORT',
-            defaultValue: '2345',
-            description: 'Loopback port the container is published on. Must match the reverse_proxy upstream in the host Caddyfile.'
-        )
-    }
-
+    // No `parameters` block, deliberately. Jenkins stores parameter definitions
+    // on the job and fills `params` for a triggered build from that stored
+    // copy, which is only refreshed *after* a run completes — so editing a
+    // defaultValue here does nothing to the very next build, and an old value
+    // silently wins. Both of these have to agree with the reverse_proxy
+    // upstream in the host Caddyfile, which makes them config, not knobs.
+    // Keeping them here means the file in git is what actually deploys.
     environment {
         IMAGE           = 'swornim-portfolio'
         CONTAINER       = 'swornim-portfolio'
         DOCKER_BUILDKIT = '1'
 
-        // Jenkins only registers a `parameters` block on the job *after* a run
-        // has completed with it, so the first build following a change here
-        // sees no params at all and `set -u` kills the shell. Resolving them
-        // through the environment gives every step a value on every run,
-        // first one included.
-        SITE_URL  = "${params.SITE_URL ?: 'https://swornim.avernek.com'}"
-        HOST_PORT = "${params.HOST_PORT ?: '2345'}"
+        // Baked into canonical URLs, OG tags, sitemap.xml and robots.txt at
+        // build time. Vite inlines VITE_*, so there is no runtime override.
+        SITE_URL  = 'https://swornim.avernek.com'
 
-        // Loopback only. Caddy is the only thing that should reach the app.
+        // Loopback only, and must match `reverse_proxy 127.0.0.1:2345` in the
+        // host Caddyfile. Caddy is the only thing that should reach the app.
         BIND_ADDR = '127.0.0.1'
+        HOST_PORT = '2345'
     }
 
     stages {
@@ -152,8 +144,12 @@ pipeline {
             steps {
                 sh '''
                     set -eu
+
+                    # Also clears a container left behind by a run that was
+                    # created but failed to start, which still holds the name.
                     docker rm -f "${CONTAINER}" >/dev/null 2>&1 || true
-                    docker run -d \
+
+                    if ! docker run -d \
                         --name "${CONTAINER}" \
                         --restart unless-stopped \
                         -p "${BIND_ADDR}:${HOST_PORT}:80" \
@@ -161,6 +157,18 @@ pipeline {
                         --read-only \
                         --tmpfs /tmp \
                         "${IMAGE}:${TAG}"
+                    then
+                        # Almost always a port clash, and the daemon's error
+                        # says which port but never which process. Name it.
+                        echo "--- could not start; who holds ${BIND_ADDR}:${HOST_PORT}?"
+                        ss -lptn "sport = :${HOST_PORT}" 2>/dev/null \
+                            || netstat -lptn 2>/dev/null | grep ":${HOST_PORT} " \
+                            || echo "(no ss/netstat on the agent)"
+                        docker ps -a --filter "publish=${HOST_PORT}" \
+                            --format 'container {{.Names}} -> {{.Ports}}' || true
+                        docker rm -f "${CONTAINER}" >/dev/null 2>&1 || true
+                        exit 1
+                    fi
                 '''
                 echo "Deployed ${env.IMAGE}:${env.TAG} on ${env.BIND_ADDR}:${env.HOST_PORT}"
             }
