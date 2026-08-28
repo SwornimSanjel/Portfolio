@@ -31,6 +31,11 @@ export default function HomePage() {
   useSeo({ canonical: "/" });
 
   const rest = projects.filter((p) => !p.featured);
+  // Same reason as the Work page headline: these two counts kept drifting out
+  // of step with the content file every time a project was added.
+  const WORDS = ["No", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"];
+  const shown = WORDS[featuredProjects.length] ?? String(featuredProjects.length);
+  const more = WORDS[rest.length]?.toLowerCase() ?? String(rest.length);
   const background = [profile.origin, profile.effort, profile.method];
 
   return (
@@ -42,7 +47,7 @@ export default function HomePage() {
         id="work"
         label="Selected work"
         heading="What I've built."
-        standfirst="Three I can show properly, four more in the index below. The company, the client websites I build inside it, and the interface work underneath."
+        standfirst={`${shown} I can show properly, ${more} more in the index below. The company, the client websites I build inside it, and the interface work underneath.`}
       >
         <PlateGrid projects={featuredProjects} />
         <div className="mt-20">

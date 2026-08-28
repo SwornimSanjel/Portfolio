@@ -21,7 +21,11 @@ export function Credentials() {
     { label: "Role", value: profile.roleShort },
     { label: "Company", value: company.name },
     { label: "Based in", value: profile.locationShort },
-    { label: "Focus", value: "AI systems · Design · Delivery" },
+    // Avernek's actual service lines, taken from the company's own material.
+    // This said "AI systems · Design · Delivery", which was a guess: "design"
+    // is what he came from, not what the company sells, and "delivery" is a
+    // stage of work rather than a thing a client buys.
+    { label: "Focus", value: "AI automation · Marketing · Web development" },
   ];
 
   return (

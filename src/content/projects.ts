@@ -364,11 +364,21 @@ export const projects: Project[] = [
   {
     slug: "inquiry-systems",
     index: "05",
-    title: "Answering every enquiry in under a minute",
-    premise: "The architecture behind a system that reads intent, qualifies a buyer, and knows when to hand over to a human.",
-    discipline: "AI automation · Systems design",
+    title: "Selling a system I do not build",
+    // Retitled and reframed. This plate used to read as though the AI
+    // architecture were his — "the architecture behind a system that reads
+    // intent" — and next to plate 04 it told the same Avernek story twice.
+    //
+    // He does not build the automation and he does not run the ads; his
+    // company does. What is his is everything on either side of the build:
+    // finding the client, working out what the business actually knows,
+    // deciding what the system must never be allowed to answer, pricing it,
+    // closing it, and being the one who answers for it afterwards. That is a
+    // different job from 04 and a more honest claim than the old framing.
+    premise: "Founder-led sales and scoping for Avernek's inquiry system — the discovery, the boundaries, and the deal, not the build.",
+    discipline: "Sales · Requirements",
     year: "2026",
-    role: ["Client discovery", "Requirements", "Knowledge architecture", "Delivery"],
+    role: ["Client discovery", "Requirements", "Pricing and closing", "Team lead"],
     stack: ["Discovery interviews", "Knowledge design", "Escalation rules", "Client delivery"],
     status: "Delivered",
     featured: false,
@@ -379,7 +389,7 @@ export const projects: Project[] = [
     // one. Restore this line the day the file lands.
     // cover: { src: "/projects/avernek-system.jpg", alt: "The Avernek site's lead-response decay chart and the typical-setup versus with-Avernek comparison table", width: 1600, height: 1150, kind: "site", label: "avernek.com" },
     summary:
-      "Businesses running ads collect messages across Facebook, Instagram, WhatsApp, web forms and marketplace listings. The hard part was never the reply — it was knowing which answer is true for this branch, this service, this customer.",
+      "Businesses running ads collect messages across Facebook, Instagram, WhatsApp, web forms and marketplace listings. Our team builds the system that answers them. My part is the half that decides whether it is worth building: which answers a business actually has, which change by branch and season, and which a machine must never give at all.",
     clearance: unverified(
       "Client names withheld pending permission",
       "Avernek's clients gave testimonials to the company. May they be named on a personal portfolio, and may any performance figures be published?",
@@ -412,7 +422,7 @@ export const projects: Project[] = [
       },
       {
         kind: "prose",
-        heading: "Where I come into this",
+        heading: "The half of it that is mine",
         body: [
           "Our CTO builds the engine. My part is everything in front of it: sitting with the owner, working out what the business actually knows, and turning what's in their head into a structure the system can answer from.",
           "That is most of the delivery time on every build. Which questions have exactly one correct answer. Which change by branch, service or season. And which must never be answered by a machine at all.",
@@ -482,8 +492,46 @@ export const projects: Project[] = [
 
   /* ---------------------------------------------------------------- 07 */
   {
-    slug: "mountain-routes",
+    slug: "sopdrafts",
     index: "07",
+    title: "Fourteen months of one company's voice",
+    premise:
+      "Static brand and social content for an SOP and visa services business — long enough that consistency became the product.",
+    discipline: "Brand · Content design",
+    year: "2025—2026",
+    role: ["Brand content design", "Social design", "Visual consistency"],
+    stack: ["Figma", "Canva", "AI-assisted imagery"],
+    status: "Delivered",
+    featured: false,
+    // TODO: needs plates. The work is posted publicly on the SOPdrafts Nepal
+    // and personal LinkedIn/TikTok accounts — pick four or five and export
+    // them at a consistent ratio. See README, "Images still needed".
+    summary:
+      "Fourteen months designing the static content for SOPdrafts Nepal — an SOP and visa services business in Kathmandu. Posts, brand updates, and the small pieces that make a small company look like the same company every week.",
+    chapters: [
+      {
+        kind: "prose",
+        heading: "The job was consistency, not posts",
+        body: [
+          "Anyone can make one good post. The reason this ran for fourteen months is that a services business selling something as consequential as a visa application is judged on whether it looks like it has its act together, and a feed that changes character every fortnight says the opposite.",
+          "So the work was mostly restraint — one type treatment, one colour behaviour, one way of handling a headline — applied week after week until the account was recognisable without the logo.",
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "Figma, Canva, and AI where it earned its place",
+        body: [
+          "Figma for anything that had to be exact or reused. Canva when the client needed to edit something themselves after I had handed it over — a template somebody can actually maintain is worth more than a file only I can open.",
+          "AI for imagery and variations, never for the decision about what the post was for. It shortens the distance between an idea and something you can look at, which on a weekly cadence is most of the work.",
+        ],
+      },
+    ],
+  },
+
+  /* ---------------------------------------------------------------- 08 */
+  {
+    slug: "mountain-routes",
+    index: "08",
     title: "Organic content for foreign trekkers",
     premise: "Running end-to-end organic content for a Nepali trekking company whose customers are almost all overseas.",
     discipline: "Growth · Content strategy",
