@@ -175,8 +175,123 @@ export const projects: Project[] = [
 
   /* ---------------------------------------------------------------- 02 */
   {
-    slug: "avernek-os",
+    slug: "roshi-international",
     index: "02",
+    title: "Thirty-nine years of sauce, put online",
+    premise:
+      "A manufacturer's first real website — product range, trade enquiries and the credentials a dealer checks before ordering.",
+    discipline: "Full-stack · Delivery",
+    year: "2026",
+    // Same shape as every Avernek website engagement: the client arrives for
+    // automation and marketing, the site is added, and the site is mine.
+    role: ["Sales", "Requirements", "Design", "AI-assisted build"],
+    stack: ["Next.js", "Claude Code", "Figma"],
+    status: "Delivered",
+    featured: true,
+    cover: {
+      src: "/projects/roshi-international.jpg",
+      alt: "The Roshi International homepage — the bilingual headline beside a photograph of a 2.5kg tomato ketchup container, over a strip of trade credentials",
+      // 16:10, the same as every other site plate. Frames are shown at their
+      // own ratio rather than cropped to a box, so two screenshots of
+      // different proportions in one row end at different heights and the
+      // grid looks misaligned. The ratio is settled at capture time instead.
+      width: 1600,
+      height: 1000,
+      kind: "site",
+      label: "roshiinternational.com",
+    },
+    external: { label: "Preview build", href: "https://demo.avernek.com/" },
+    summary:
+      "Roshi International has manufactured sauces and condiments in Kathmandu since 1987 — soya sauce, chilli, ketchup, mayonnaise, vinegar — sold through homes, retailers, dealers and food service. The site is finished and running on a preview domain; roshiinternational.com is bought and waiting on the hosting cutover.",
+    chapters: [
+      {
+        kind: "prose",
+        heading: "Two audiences, one page",
+        body: [
+          "A person buying a 320gm bottle for their kitchen and a dealer pricing a 5kg carton want completely different things, and a manufacturer's site usually gets built for whichever one the owner thought of first.",
+          "So the product range leads with the sizes — 370gm through 5kg on the same card — because the size list is the fastest way for a trade buyer to work out whether this supplier is relevant to them, and it costs a home cook nothing to read past it.",
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "The credentials are the product",
+        body: [
+          "Thirty-nine years, established 2044 BS, DFTQC licensed, government registered, a growing dealer network. For a food manufacturer selling into shops and restaurants, those four facts do more work than any amount of copy about quality.",
+          "They sit in a strip directly under the fold rather than on an About page, because a dealer deciding whether to make contact checks them first and leaves if they cannot find them.",
+        ],
+      },
+    ],
+  },
+
+  /* ---------------------------------------------------------------- 03 */
+  {
+    slug: "nepal-comfort",
+    index: "03",
+    title: "A 1999 tour company, rebuilt",
+    premise: "A full-stack rebuild for a Kathmandu vehicle rental and tour operator — client, API, database and deployment.",
+    discipline: "Full-stack · Delivery",
+    year: "2026",
+    // An Avernek engagement, not freelance. The client came for automation
+    // and marketing and asked for the site as well; the site is the part I
+    // take myself, end to end.
+    role: ["Sales", "Requirements", "Design", "AI-assisted build"],
+    stack: ["Figma", "Claude Code", "React", "Node"],
+    status: "Delivered",
+    featured: true,
+    cover: {
+      src: "/projects/nepal-comfort.jpg",
+      alt: "The Nepal Comfort Tour Service homepage — a full-bleed photograph of the company's own fleet behind the headline, with the since-1999 and NTVA-registered credentials called out",
+      // The file is 1600x1000. This said 1100, so the browser reserved a box
+      // 100px taller than the image that arrived — the plate settled short
+      // once it loaded, and sat lower than its neighbour in the row.
+      width: 1600,
+      height: 1000,
+      kind: "site",
+      // The client is Nepal Comfort Tour Service (P) Ltd.; the domain is
+      // nepaltourservice.com. The chrome label said nepalcomfort.com, which
+      // is not a site that exists.
+      label: "nepaltourservice.com",
+    },
+    summary:
+      "Nepal Comfort Tour Service has run vehicle rental and tour transportation out of Kathmandu since 1999. The rebuild is a complete MERN application — not a template with their logo on it. It came to Avernek as an automation and marketing engagement; the website was added to it, and the build is mine.",
+    // The rebuild is finished but not yet cut over — nepaltourservice.com
+    // still serves the old site until hosting moves. Deliberately not linked
+    // as `external`, because a link labelled with this case study that opens
+    // the site it replaced is worse than no link.
+    chapters: [
+      {
+        kind: "prose",
+        heading: "Why not a brochure site",
+        body: [
+          "Nepal Comfort Tour Service has run vehicle rental and tour transport out of Kathmandu since 1999. Their fleet, routes and pricing change constantly, and every change was going through whoever could edit the site that week.",
+          "So the fleet, routes and rates are database-backed and editable by them, not hardcoded into pages. The site itself leads with their own photographs — twenty-six years of vehicles and drivers is the credential, and stock imagery would have thrown that away.",
+        ],
+      },
+      {
+        kind: "spec",
+        heading: "Under it",
+        rows: [
+          { label: "Client", value: "React 18, Vite, Tailwind, Motion" },
+          { label: "Server", value: "Node, Express, MongoDB with Mongoose, JWT auth" },
+          { label: "Local", value: "Docker Compose — mongo, server, client; in-memory Mongo fallback for machines without either" },
+          { label: "Data", value: "Seed and fresh-seed scripts, so the database is reproducible" },
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "Handover",
+        body: [
+          "The whole thing comes up with one command, and the setup notes cover the things that actually trip people up locally. It is a small amount of writing that saves the next person an hour.",
+          "A project is not delivered until someone else can run it.",
+        ],
+      },
+    ],
+  },
+
+  /* ---------------------------------------------------------------- 04 */
+  {
+    slug: "avernek-os",
+    index: "04",
     title: "A commitment ledger, not a to-do app",
     premise: "An internal product with opinions strong enough to make it deliberately worse at some things.",
     discipline: "Product design · Systems",
@@ -245,10 +360,10 @@ export const projects: Project[] = [
     ],
   },
 
-  /* ---------------------------------------------------------------- 03 */
+  /* ---------------------------------------------------------------- 05 */
   {
     slug: "inquiry-systems",
-    index: "03",
+    index: "05",
     title: "Answering every enquiry in under a minute",
     premise: "The architecture behind a system that reads intent, qualifies a buyer, and knows when to hand over to a human.",
     discipline: "AI automation · Systems design",
@@ -314,115 +429,7 @@ export const projects: Project[] = [
     ],
   },
 
-  /* ---------------------------------------------------------------- 04 */
-  {
-    slug: "roshi-international",
-    index: "04",
-    title: "Thirty-nine years of sauce, put online",
-    premise:
-      "A manufacturer's first real website — product range, trade enquiries and the credentials a dealer checks before ordering.",
-    discipline: "Full-stack · Delivery",
-    year: "2026",
-    // Same shape as every Avernek website engagement: the client arrives for
-    // automation and marketing, the site is added, and the site is mine.
-    role: ["Sales", "Requirements", "Design", "AI-assisted build"],
-    stack: ["Next.js", "Claude Code", "Figma"],
-    status: "Delivered",
-    featured: true,
-    cover: {
-      src: "/projects/roshi-international.jpg",
-      alt: "The Roshi International homepage — the bilingual headline beside a photograph of a 2.5kg tomato ketchup container, over a strip of trade credentials",
-      width: 1600,
-      height: 930,
-      kind: "site",
-      label: "roshiinternational.com",
-    },
-    external: { label: "Preview build", href: "https://demo.avernek.com/" },
-    summary:
-      "Roshi International has manufactured sauces and condiments in Kathmandu since 1987 — soya sauce, chilli, ketchup, mayonnaise, vinegar — sold through homes, retailers, dealers and food service. The site is finished and running on a preview domain; roshiinternational.com is bought and waiting on the hosting cutover.",
-    chapters: [
-      {
-        kind: "prose",
-        heading: "Two audiences, one page",
-        body: [
-          "A person buying a 320gm bottle for their kitchen and a dealer pricing a 5kg carton want completely different things, and a manufacturer's site usually gets built for whichever one the owner thought of first.",
-          "So the product range leads with the sizes — 370gm through 5kg on the same card — because the size list is the fastest way for a trade buyer to work out whether this supplier is relevant to them, and it costs a home cook nothing to read past it.",
-        ],
-      },
-      {
-        kind: "prose",
-        heading: "The credentials are the product",
-        body: [
-          "Thirty-nine years, established 2044 BS, DFTQC licensed, government registered, a growing dealer network. For a food manufacturer selling into shops and restaurants, those four facts do more work than any amount of copy about quality.",
-          "They sit in a strip directly under the fold rather than on an About page, because a dealer deciding whether to make contact checks them first and leaves if they cannot find them.",
-        ],
-      },
-    ],
-  },
-
-  /* ---------------------------------------------------------------- 04 */
-  {
-    slug: "nepal-comfort",
-    index: "05",
-    title: "A 1999 tour company, rebuilt",
-    premise: "A full-stack rebuild for a Kathmandu vehicle rental and tour operator — client, API, database and deployment.",
-    discipline: "Full-stack · Delivery",
-    year: "2026",
-    // An Avernek engagement, not freelance. The client came for automation
-    // and marketing and asked for the site as well; the site is the part I
-    // take myself, end to end.
-    role: ["Sales", "Requirements", "Design", "AI-assisted build"],
-    stack: ["Figma", "Claude Code", "React", "Node"],
-    status: "Delivered",
-    featured: true,
-    cover: {
-      src: "/projects/nepal-comfort.jpg",
-      alt: "The Nepal Comfort Tour Service homepage — a full-bleed photograph of the company's own fleet behind the headline, with the since-1999 and NTVA-registered credentials called out",
-      width: 1600,
-      height: 1100,
-      kind: "site",
-      // The client is Nepal Comfort Tour Service (P) Ltd.; the domain is
-      // nepaltourservice.com. The chrome label said nepalcomfort.com, which
-      // is not a site that exists.
-      label: "nepaltourservice.com",
-    },
-    summary:
-      "Nepal Comfort Tour Service has run vehicle rental and tour transportation out of Kathmandu since 1999. The rebuild is a complete MERN application — not a template with their logo on it. It came to Avernek as an automation and marketing engagement; the website was added to it, and the build is mine.",
-    // The rebuild is finished but not yet cut over — nepaltourservice.com
-    // still serves the old site until hosting moves. Deliberately not linked
-    // as `external`, because a link labelled with this case study that opens
-    // the site it replaced is worse than no link.
-    chapters: [
-      {
-        kind: "prose",
-        heading: "Why not a brochure site",
-        body: [
-          "Nepal Comfort Tour Service has run vehicle rental and tour transport out of Kathmandu since 1999. Their fleet, routes and pricing change constantly, and every change was going through whoever could edit the site that week.",
-          "So the fleet, routes and rates are database-backed and editable by them, not hardcoded into pages. The site itself leads with their own photographs — twenty-six years of vehicles and drivers is the credential, and stock imagery would have thrown that away.",
-        ],
-      },
-      {
-        kind: "spec",
-        heading: "Under it",
-        rows: [
-          { label: "Client", value: "React 18, Vite, Tailwind, Motion" },
-          { label: "Server", value: "Node, Express, MongoDB with Mongoose, JWT auth" },
-          { label: "Local", value: "Docker Compose — mongo, server, client; in-memory Mongo fallback for machines without either" },
-          { label: "Data", value: "Seed and fresh-seed scripts, so the database is reproducible" },
-        ],
-      },
-      {
-        kind: "prose",
-        heading: "Handover",
-        body: [
-          "The whole thing comes up with one command, and the setup notes cover the things that actually trip people up locally. It is a small amount of writing that saves the next person an hour.",
-          "A project is not delivered until someone else can run it.",
-        ],
-      },
-    ],
-  },
-
-  /* ---------------------------------------------------------------- 05 */
+  /* ---------------------------------------------------------------- 06 */
   {
     slug: "hck-core",
     index: "06",
@@ -473,7 +480,7 @@ export const projects: Project[] = [
     ],
   },
 
-  /* ---------------------------------------------------------------- 06 */
+  /* ---------------------------------------------------------------- 07 */
   {
     slug: "mountain-routes",
     index: "07",
