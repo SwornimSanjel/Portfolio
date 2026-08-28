@@ -25,7 +25,7 @@ export type Seo = {
   ogType?: "website" | "article";
 };
 
-const DEFAULT_TITLE = `${profile.name} — ${profile.role}`;
+const DEFAULT_TITLE = `${profile.name} · ${profile.role}`;
 
 function setMeta(selector: string, attr: "name" | "property", key: string, value: string) {
   let el = document.head.querySelector<HTMLMetaElement>(selector);
@@ -49,7 +49,7 @@ function setCanonical(href: string) {
 
 export function useSeo({ title, description, canonical, ogType = "website" }: Seo) {
   useEffect(() => {
-    const fullTitle = title ? `${title} — ${profile.name}` : DEFAULT_TITLE;
+    const fullTitle = title ? `${title} · ${profile.name}` : DEFAULT_TITLE;
     const desc = description ?? profile.claim;
     const url = `${siteUrl}${canonical ?? window.location.pathname}`;
 

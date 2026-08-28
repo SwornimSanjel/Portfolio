@@ -31,7 +31,7 @@ export function TheRule() {
             <p className="mt-8 max-w-measure text-body">
               It would have been easy to build and it would have felt like rigour. Measuring
               presence tells you who is at their desk; measuring commitments tells you who does
-              what they said. Only one of those was the thing I actually cared about — so the
+              what they said. Only one of those was the thing I actually cared about, so the
               product is deliberately worse at the other one, on purpose, in writing.
             </p>
           </div>

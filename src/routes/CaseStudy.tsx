@@ -49,7 +49,7 @@ export default function CaseStudyPage() {
           <div className="mt-8 grid gap-x-8 gap-y-8 border-t border-rule pt-8 md:grid-cols-12">
             <div className="md:col-span-8">
               <p className="meta tnum">
-                Plate {project.index} — {project.discipline}
+                Plate {project.index} · {project.discipline}
               </p>
               <h1 className="mt-5 max-w-[20ch] text-h1 text-ink">{project.title}</h1>
               <p className="mt-6 max-w-measure text-lead text-graphite">{project.summary}</p>
@@ -110,7 +110,7 @@ export default function CaseStudyPage() {
             href={`/work/${next.slug}`}
             className="link-underline mt-3 inline-block text-h2 font-semibold text-ink"
           >
-            {next.index} — {next.title}
+            {next.index} · {next.title}
           </Link>
         </Container>
       </nav>

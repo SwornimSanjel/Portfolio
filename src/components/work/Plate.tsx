@@ -29,7 +29,7 @@ export function Plate({ project, priority }: { project: Project; priority?: bool
       <Link
         href={`/work/${project.slug}`}
         className="block rounded-md focus-visible:outline-offset-4"
-        aria-label={`${project.title} — open case study`}
+        aria-label={`${project.title}, open case study`}
       >
         {project.cover ? (
           <Frame
@@ -46,7 +46,7 @@ export function Plate({ project, priority }: { project: Project; priority?: bool
           <div className="flex items-baseline justify-between gap-4">
             <p className="meta tnum">
               <span className="text-accent">{project.index}</span>
-              <span className="mx-2 text-muted/50">—</span>
+              <span className="mx-2 text-muted/50">·</span>
               {project.discipline}
             </p>
             <p className="meta tnum">{project.year}</p>

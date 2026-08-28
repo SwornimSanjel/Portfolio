@@ -93,7 +93,7 @@ export const projects: Project[] = [
     status: "Live",
     external: { label: "avernek.com", href: "https://avernek.com/" },
     featured: true,
-    cover: { src: "/projects/avernek-desktop.jpg", alt: "The live avernek.com homepage — the hero, positioning line and the three-stage system diagram", width: 1600, height: 1000, kind: "site", label: "avernek.com" },
+    cover: { src: "/projects/avernek-desktop.jpg", alt: "The live avernek.com homepage showing the hero, positioning line and the three-stage system diagram", width: 1600, height: 1000, kind: "site", label: "avernek.com" },
     summary:
       "Avernek Technologies is a registered Nepali company building AI inquiry systems for businesses that lose customers between an advert and a reply. I started it, sell it, direct its design, and answer for it when something breaks.",
     chapters: [
@@ -140,7 +140,7 @@ export const projects: Project[] = [
         kind: "prose",
         heading: "The website",
         body: [
-          "The site is dark, typographic and deliberately not playful — the audience is a business owner deciding whether a small Nepali company can be trusted with their enquiries, and warmth is not what reassures them. The design direction, the positioning and most of the words are mine.",
+          "The site is dark, typographic and deliberately not playful. The audience is a business owner deciding whether a small Nepali company can be trusted with their enquiries, and warmth is not what reassures them. The design direction, the positioning and most of the words are mine.",
           "It was built with AI in the loop. That isn't a confession, it's the point: the distance between deciding something and having it live was days rather than months, which for a company with no runway is the whole advantage.",
         ],
       },
@@ -158,7 +158,7 @@ export const projects: Project[] = [
         heading: "Under it",
         rows: [
           { label: "My part", value: "Positioning, copy, design direction, the build" },
-          { label: "Not my part", value: "The AI automation engine behind it — that's our CTO" },
+          { label: "Not my part", value: "The AI automation engine behind it, which is our CTO" },
           { label: "Approach", value: "AI-assisted, so a decision reached the live site in days" },
         ],
       },
@@ -179,7 +179,7 @@ export const projects: Project[] = [
     index: "02",
     title: "Thirty-nine years of sauce, put online",
     premise:
-      "A manufacturer's first real website — product range, trade enquiries and the credentials a dealer checks before ordering.",
+      "A manufacturer's first real website: product range, trade enquiries and the credentials a dealer checks before ordering.",
     discipline: "Full-stack · Delivery",
     year: "2026",
     // Same shape as every Avernek website engagement: the client arrives for
@@ -190,7 +190,7 @@ export const projects: Project[] = [
     featured: true,
     cover: {
       src: "/projects/roshi-international.jpg",
-      alt: "The Roshi International homepage — the bilingual headline beside a photograph of a 2.5kg tomato ketchup container, over a strip of trade credentials",
+      alt: "The Roshi International homepage: the bilingual headline beside a photograph of a 2.5kg tomato ketchup container, over a strip of trade credentials",
       // 16:10, the same as every other site plate. Frames are shown at their
       // own ratio rather than cropped to a box, so two screenshots of
       // different proportions in one row end at different heights and the
@@ -202,14 +202,14 @@ export const projects: Project[] = [
     },
     external: { label: "Preview build", href: "https://demo.avernek.com/" },
     summary:
-      "Roshi International has manufactured sauces and condiments in Kathmandu since 1987 — soya sauce, chilli, ketchup, mayonnaise, vinegar — sold through homes, retailers, dealers and food service. The site is finished and running on a preview domain; roshiinternational.com is bought and waiting on the hosting cutover.",
+      "Roshi International has manufactured sauces and condiments in Kathmandu since 1987: soya sauce, chilli, ketchup, mayonnaise and vinegar, sold through homes, retailers, dealers and food service. The site is finished and running on a preview domain; roshiinternational.com is bought and waiting on the hosting cutover.",
     chapters: [
       {
         kind: "prose",
         heading: "Two audiences, one page",
         body: [
           "A person buying a 320gm bottle for their kitchen and a dealer pricing a 5kg carton want completely different things, and a manufacturer's site usually gets built for whichever one the owner thought of first.",
-          "So the product range leads with the sizes — 370gm through 5kg on the same card — because the size list is the fastest way for a trade buyer to work out whether this supplier is relevant to them, and it costs a home cook nothing to read past it.",
+          "So the product range leads with the sizes, 370gm through 5kg on the same card, because the size list is the fastest way for a trade buyer to work out whether this supplier is relevant to them, and it costs a home cook nothing to read past it.",
         ],
       },
       {
@@ -228,7 +228,7 @@ export const projects: Project[] = [
     slug: "nepal-comfort",
     index: "03",
     title: "A 1999 tour company, rebuilt",
-    premise: "A full-stack rebuild for a Kathmandu vehicle rental and tour operator — client, API, database and deployment.",
+    premise: "A full-stack rebuild for a Kathmandu vehicle rental and tour operator: client, API, database and deployment.",
     discipline: "Full-stack · Delivery",
     year: "2026",
     // An Avernek engagement, not freelance. The client came for automation
@@ -240,7 +240,7 @@ export const projects: Project[] = [
     featured: true,
     cover: {
       src: "/projects/nepal-comfort.jpg",
-      alt: "The Nepal Comfort Tour Service homepage — a full-bleed photograph of the company's own fleet behind the headline, with the since-1999 and NTVA-registered credentials called out",
+      alt: "The Nepal Comfort Tour Service homepage: a full-bleed photograph of the company's own fleet behind the headline, with the since-1999 and NTVA-registered credentials called out",
       // The file is 1600x1000. This said 1100, so the browser reserved a box
       // 100px taller than the image that arrived — the plate settled short
       // once it loaded, and sat lower than its neighbour in the row.
@@ -253,7 +253,7 @@ export const projects: Project[] = [
       label: "nepaltourservice.com",
     },
     summary:
-      "Nepal Comfort Tour Service has run vehicle rental and tour transportation out of Kathmandu since 1999. The rebuild is a complete MERN application — not a template with their logo on it. It came to Avernek as an automation and marketing engagement; the website was added to it, and the build is mine.",
+      "Nepal Comfort Tour Service has run vehicle rental and tour transportation out of Kathmandu since 1999. The rebuild is a complete MERN application, not a template with their logo on it. It came to Avernek as an automation and marketing engagement; the website was added to it, and the build is mine.",
     // The rebuild is finished but not yet cut over — nepaltourservice.com
     // still serves the old site until hosting moves. Deliberately not linked
     // as `external`, because a link labelled with this case study that opens
@@ -264,7 +264,7 @@ export const projects: Project[] = [
         heading: "Why not a brochure site",
         body: [
           "Nepal Comfort Tour Service has run vehicle rental and tour transport out of Kathmandu since 1999. Their fleet, routes and pricing change constantly, and every change was going through whoever could edit the site that week.",
-          "So the fleet, routes and rates are database-backed and editable by them, not hardcoded into pages. The site itself leads with their own photographs — twenty-six years of vehicles and drivers is the credential, and stock imagery would have thrown that away.",
+          "So the fleet, routes and rates are database-backed and editable by them, not hardcoded into pages. The site itself leads with their own photographs. Twenty-six years of vehicles and drivers is the credential, and stock imagery would have thrown that away.",
         ],
       },
       {
@@ -273,7 +273,7 @@ export const projects: Project[] = [
         rows: [
           { label: "Client", value: "React 18, Vite, Tailwind, Motion" },
           { label: "Server", value: "Node, Express, MongoDB with Mongoose, JWT auth" },
-          { label: "Local", value: "Docker Compose — mongo, server, client; in-memory Mongo fallback for machines without either" },
+          { label: "Local", value: "Docker Compose running mongo, server and client, with an in-memory Mongo fallback for machines without either" },
           { label: "Data", value: "Seed and fresh-seed scripts, so the database is reproducible" },
         ],
       },
@@ -290,95 +290,27 @@ export const projects: Project[] = [
 
   /* ---------------------------------------------------------------- 04 */
   {
-    slug: "avernek-os",
-    index: "04",
-    title: "A commitment ledger, not a to-do app",
-    premise: "An internal product with opinions strong enough to make it deliberately worse at some things.",
-    discipline: "Product design · Systems",
-    year: "2026",
-    role: ["Product definition", "Interface design", "Rules and behaviour"],
-    stack: ["Figma", "Product definition", "AI-assisted prototype"],
-    status: "Internal",
-    featured: false,
-    // TODO: needs a real screenshot — see README "Images still needed".
-    summary:
-      "Avernek OS is the internal system a three-person agency runs on. Adding a task is free; missing a deadline is expensive and public — and the founder is on the same scoreboard as everyone else.",
-    chapters: [
-      {
-        kind: "prose",
-        heading: "Why not just use Trello",
-        body: [
-          "Because a board tells you what exists, not what was promised. Small agencies don't fail because nobody wrote the task down. They fail because a date quietly moved, twice, and the client found out last.",
-          "So the unit isn't a task. It's a commitment: something someone said they would do by a date, with a record of every time that date changed and who changed it.",
-        ],
-      },
-      {
-        kind: "decisions",
-        heading: "The rules that make it a product",
-        items: [
-          {
-            title: "Never build surveillance",
-            body: "No hours logged. No activity heatmaps. No 'last seen', no online status, no screenshots, no location. The board shows the deadline and the state, never when someone was working. This is written into the project's own instructions with a note telling any future session to refuse a request for it, and point back at the reason.",
-          },
-          {
-            title: "Punish silence, not humanity",
-            body: "Declaring a task at risk more than 24 hours before it's due carries zero penalty — it's the behaviour the system wants. A silent miss, or a flag raised inside the final 24 hours, is penalised. People are allowed to be late. They're not allowed to be quiet about it.",
-          },
-          {
-            title: "Nobody edits their own past",
-            body: "Deadline changes and accountability events are append-only, enforced at the database level rather than in the interface. History that can be rewritten isn't history.",
-          },
-          {
-            title: "The founder is on the same scoreboard",
-            body: "Only the founder role can edit or delete a deadline — enforced in row-level security, not just hidden in the UI — but the founder's own misses appear exactly like everyone else's. A ledger that exempts the person who built it isn't a ledger.",
-          },
-          {
-            title: "Saturday is the weekend, Sunday is a working day",
-            body: "The Nepali working week is built into the date arithmetic, in one pure, unit-tested module that all scheduling goes through. Every delivery pack scheduled when a client signs lands on a day the team actually works.",
-          },
-        ],
-      },
-      {
-        kind: "prose",
-        heading: "What it does that a board can't",
-        body: [
-          "It schedules a delivery pack automatically the moment a client signs, using the working calendar rather than raw dates. It refuses overload out loud — an intake gate that says no when the week is full, and drafts the message to the client explaining the delay. And it learns behaviour over time: who slips, who goes quiet, and nudges before the miss rather than after it.",
-          "Milestone 1 is built and running: auth, people, tasks, the calendar, permissions and row-level security, the Today and Board screens, Telegram notifications and the daily log.",
-        ],
-      },
-      {
-        kind: "spec",
-        heading: "Under it",
-        rows: [
-          { label: "Framework", value: "Next.js 15, App Router, TypeScript" },
-          { label: "Data", value: "Supabase Postgres, RLS on every table, Realtime" },
-          { label: "Notifications", value: "Telegram Bot API behind a channel interface" },
-          { label: "Scheduling", value: "Vercel Cron, Asia/Kathmandu (UTC+05:45) throughout" },
-          { label: "Discipline", value: "Every schema change is a migration file; calendar logic is pure and unit-tested" },
-        ],
-      },
-    ],
-  },
-
-  /* ---------------------------------------------------------------- 05 */
-  {
     slug: "inquiry-systems",
-    index: "05",
-    title: "Selling a system I do not build",
-    // Retitled and reframed. This plate used to read as though the AI
-    // architecture were his — "the architecture behind a system that reads
-    // intent" — and next to plate 04 it told the same Avernek story twice.
+    index: "04",
+    title: "The product I built the company around",
+    // A correction of a correction.
     //
-    // He does not build the automation and he does not run the ads; his
-    // company does. What is his is everything on either side of the build:
-    // finding the client, working out what the business actually knows,
-    // deciding what the system must never be allowed to answer, pricing it,
-    // closing it, and being the one who answers for it afterwards. That is a
-    // different job from 04 and a more honest claim than the old framing.
-    premise: "Founder-led sales and scoping for Avernek's inquiry system — the discovery, the boundaries, and the deal, not the build.",
-    discipline: "Sales · Requirements",
+    // This first over-claimed: "the architecture behind a system that reads
+    // intent", as though the engineering were his. Fixing that, it swung to
+    // "Selling a system I do not build" — which is accurate about the code
+    // and wrong about everything else. He is the founder. The product is his
+    // idea, he defines what it does and refuses to do, he sells it, and he
+    // leads the people who build it. A title that opens by naming what he is
+    // not is a strange thing to put on a portfolio, and it reads as smaller
+    // than the truth.
+    //
+    // Founders are not judged on who typed the code. The claim is ownership
+    // of the product, stated plainly, with the build credited where it
+    // belongs inside the case study rather than in the headline.
+    premise: "The inquiry system Avernek sells. What it does, what it refuses to do, who it is sold to, and the team that builds it.",
+    discipline: "Product · Founder-led sales",
     year: "2026",
-    role: ["Client discovery", "Requirements", "Pricing and closing", "Team lead"],
+    role: ["Product definition", "Client discovery", "Pricing and closing", "Team lead"],
     stack: ["Discovery interviews", "Knowledge design", "Escalation rules", "Client delivery"],
     status: "Delivered",
     featured: false,
@@ -389,7 +321,7 @@ export const projects: Project[] = [
     // one. Restore this line the day the file lands.
     // cover: { src: "/projects/avernek-system.jpg", alt: "The Avernek site's lead-response decay chart and the typical-setup versus with-Avernek comparison table", width: 1600, height: 1150, kind: "site", label: "avernek.com" },
     summary:
-      "Businesses running ads collect messages across Facebook, Instagram, WhatsApp, web forms and marketplace listings. Our team builds the system that answers them. My part is the half that decides whether it is worth building: which answers a business actually has, which change by branch and season, and which a machine must never give at all.",
+      "Businesses running ads collect messages across Facebook, Instagram, WhatsApp, web forms and marketplace listings. Avernek sells the system that answers them. I decide what it does and what it must never do, I sit with the client to find out what the business actually knows, I price it and close it, and our CTO builds it.",
     clearance: unverified(
       "Client names withheld pending permission",
       "Avernek's clients gave testimonials to the company. May they be named on a personal portfolio, and may any performance figures be published?",
@@ -399,7 +331,7 @@ export const projects: Project[] = [
         kind: "prose",
         heading: "The problem underneath the problem",
         body: [
-          "Every business asked for the same thing — 'reply to messages automatically' — and every business meant something different by it. A clinic needs to know which treatment, which branch, and whether it's urgent. A showroom needs to know the model, the budget and whether the person can actually visit. A property business needs the location and whether the enquiry is a buyer or a broker.",
+          "Every business asked for the same thing, 'reply to messages automatically', and every business meant something different by it. A clinic needs to know which treatment, which branch, and whether it's urgent. A showroom needs to know the model, the budget and whether the person can actually visit. A property business needs the location and whether the enquiry is a buyer or a broker.",
           "A single generic auto-reply is worse than no auto-reply, because it tells the customer they're talking to a wall. The system had to hold a specific business's actual knowledge and behave differently depending on what was being asked.",
         ],
       },
@@ -411,18 +343,18 @@ export const projects: Project[] = [
         steps: [
           { label: "Customer", detail: "Sees an advert or a post and sends a message." },
           { label: "Channel", detail: "Facebook, Instagram, WhatsApp, web form, or a marketplace listing." },
-          { label: "Capture", detail: "Every message is recorded the moment it lands — nothing depends on someone noticing.", owned: true },
+          { label: "Capture", detail: "Every message is recorded the moment it lands, so nothing depends on someone noticing.", owned: true },
           { label: "Intent", detail: "What is this person actually asking for, and how urgent is it?", owned: true },
-          { label: "Knowledge", detail: "The business's own answers — services, branches, prices, hours — not general knowledge.", owned: true },
+          { label: "Knowledge", detail: "The business's own answers: services, branches, prices and hours, not general knowledge.", owned: true },
           { label: "Qualify", detail: "Serious buyer or browser. Scored, so the team knows who to call first.", owned: true },
           { label: "CRM", detail: "One structured pipeline the owner can actually see." },
           { label: "Human", detail: "Escalated to a person with the context already gathered." },
-          { label: "Report", detail: "Response speed, lead quality, follow-up status — back to the owner." },
+          { label: "Report", detail: "Response speed, lead quality and follow-up status, back to the owner." },
         ],
       },
       {
         kind: "prose",
-        heading: "The half of it that is mine",
+        heading: "Where the product comes from",
         body: [
           "Our CTO builds the engine. My part is everything in front of it: sitting with the owner, working out what the business actually knows, and turning what's in their head into a structure the system can answer from.",
           "That is most of the delivery time on every build. Which questions have exactly one correct answer. Which change by branch, service or season. And which must never be answered by a machine at all.",
@@ -439,10 +371,10 @@ export const projects: Project[] = [
     ],
   },
 
-  /* ---------------------------------------------------------------- 06 */
+  /* ---------------------------------------------------------------- 05 */
   {
     slug: "hck-core",
-    index: "06",
+    index: "05",
     title: "Designing a college's resource platform",
     premise: "Sole UI/UX designer on a student and teacher platform, during a four-month internship.",
     discipline: "UI/UX",
@@ -468,14 +400,14 @@ export const projects: Project[] = [
         heading: "Two portals, one system",
         body: [
           "Students and teachers want opposite things from the same content. A student wants to find one specific resource for tomorrow's class as fast as possible. A teacher wants to see everything they've put into a module and whether it's complete.",
-          "The temptation is to build two products. What I designed was one system with two entry points — the same modules, the same resources, arranged around a different question.",
+          "The temptation is to build two products. What I designed was one system with two entry points: the same modules, the same resources, arranged around a different question.",
         ],
       },
       {
         kind: "prose",
         heading: "The internship was formal recognition of something I'd already been doing",
         body: [
-          "By the time this started I had been teaching myself UI in Figma every day for a long time — building interfaces nobody asked for, redrawing apps I used, posting the results. Most of that work only ever lived on LinkedIn and TikTok.",
+          "By the time this started I had been teaching myself UI in Figma every day for a long time, building interfaces nobody asked for, redrawing apps I used, posting the results. Most of that work only ever lived on LinkedIn and TikTok.",
           "This was the first time it was a job with someone else's requirements attached, and a deadline that wasn't mine to move.",
         ],
       },
@@ -483,22 +415,22 @@ export const projects: Project[] = [
         kind: "prose",
         heading: "What being the only designer taught me",
         body: [
-          "Nobody was going to catch my mistakes. There was no second designer to say a flow didn't make sense, so I had to build the habit of arguing with my own work — walking a screen as a student who was late and stressed, then again as a teacher uploading at midnight.",
+          "Nobody was going to catch my mistakes. There was no second designer to say a flow didn't make sense, so I had to build the habit of arguing with my own work, walking a screen as a student who was late and stressed, then again as a teacher uploading at midnight.",
           "It's the reason I now design flows before screens. A pretty screen in the wrong place in a flow is just a nicer way to be lost.",
         ],
       },
     ],
   },
 
-  /* ---------------------------------------------------------------- 07 */
+  /* ---------------------------------------------------------------- 06 */
   {
     slug: "sopdrafts",
-    index: "07",
+    index: "06",
     title: "Fourteen months of one company's voice",
     premise:
-      "Static brand and social content for an SOP and visa services business — long enough that consistency became the product.",
+      "Static brand and social content for an SOP and visa services business, run long enough that consistency became the product.",
     discipline: "Brand · Content design",
-    year: "2025—2026",
+    year: "2025/26",
     role: ["Brand content design", "Social design", "Visual consistency"],
     stack: ["Figma", "Canva", "AI-assisted imagery"],
     status: "Delivered",
@@ -507,31 +439,31 @@ export const projects: Project[] = [
     // and personal LinkedIn/TikTok accounts — pick four or five and export
     // them at a consistent ratio. See README, "Images still needed".
     summary:
-      "Fourteen months designing the static content for SOPdrafts Nepal — an SOP and visa services business in Kathmandu. Posts, brand updates, and the small pieces that make a small company look like the same company every week.",
+      "Fourteen months designing the static content for SOPdrafts Nepal, an SOP and visa services business in Kathmandu. Posts, brand updates, and the small pieces that make a small company look like the same company every week.",
     chapters: [
       {
         kind: "prose",
         heading: "The job was consistency, not posts",
         body: [
           "Anyone can make one good post. The reason this ran for fourteen months is that a services business selling something as consequential as a visa application is judged on whether it looks like it has its act together, and a feed that changes character every fortnight says the opposite.",
-          "So the work was mostly restraint — one type treatment, one colour behaviour, one way of handling a headline — applied week after week until the account was recognisable without the logo.",
+          "So the work was mostly restraint: one type treatment, one colour behaviour, one way of handling a headline, applied week after week until the account was recognisable without the logo.",
         ],
       },
       {
         kind: "prose",
         heading: "Figma, Canva, and AI where it earned its place",
         body: [
-          "Figma for anything that had to be exact or reused. Canva when the client needed to edit something themselves after I had handed it over — a template somebody can actually maintain is worth more than a file only I can open.",
+          "Figma for anything that had to be exact or reused. Canva when the client needed to edit something themselves after I had handed it over. A template somebody can actually maintain is worth more than a file only I can open.",
           "AI for imagery and variations, never for the decision about what the post was for. It shortens the distance between an idea and something you can look at, which on a weekly cadence is most of the work.",
         ],
       },
     ],
   },
 
-  /* ---------------------------------------------------------------- 08 */
+  /* ---------------------------------------------------------------- 07 */
   {
     slug: "mountain-routes",
-    index: "08",
+    index: "07",
     title: "Organic content for foreign trekkers",
     premise: "Running end-to-end organic content for a Nepali trekking company whose customers are almost all overseas.",
     discipline: "Growth · Content strategy",
@@ -540,7 +472,7 @@ export const projects: Project[] = [
     stack: ["Instagram", "Facebook", "Figma", "CapCut"],
     status: "Ongoing",
     featured: false,
-    cover: { src: "/projects/mountain-routes-1.jpg", alt: "An Everest Base Camp with Gokyo Lakes itinerary designed for Mountain Routes — route map, day-by-day breakdown and trip statistics", width: 1400, height: 1400, kind: "artifact" },
+    cover: { src: "/projects/mountain-routes-1.jpg", alt: "An Everest Base Camp with Gokyo Lakes itinerary designed for Mountain Routes, showing the route map, day-by-day breakdown and trip statistics", width: 1400, height: 1400, kind: "artifact" },
     summary:
       "Mountain Routes sells treks in Nepal to people in Europe, North America and Australia. The whole problem is that the audience has never been here and is deciding whether to trust a company they found on a phone.",
     clearance: unverified(
@@ -554,24 +486,24 @@ export const projects: Project[] = [
         body: [
           "A trekking company's local audience already knows what Everest Base Camp involves. A foreign audience is asking quieter questions: is this safe, are these people real, what happens if something goes wrong at altitude, and can I actually do this.",
           "So the content answers those instead of posting mountains. Itineraries laid out clearly. The guides, as people. The practical detail nobody puts on a poster because it isn't beautiful.",
-          "Most of it is short-form video, produced in volume — reels week after week rather than an occasional polished piece. Consistency is what makes a small account look like a real company, and volume is the only way to get consistency.",
+          "Most of it is short-form video, produced in volume: reels week after week rather than an occasional polished piece. Consistency is what makes a small account look like a real company, and volume is the only way to get consistency.",
         ],
       },
       {
         kind: "figure",
         src: "/projects/mountain-routes-1.jpg",
-        alt: "Everest Base Camp with Gokyo Lakes itinerary — a route map with named stops and altitudes, a seventeen-day breakdown, and a trip statistics bar.",
+        alt: "Everest Base Camp with Gokyo Lakes itinerary: a route map with named stops and altitudes, a seventeen-day breakdown, and a trip statistics bar.",
         width: 1400,
         height: 1400,
         caption:
-          "The itinerary format. A route map with every stop and altitude named, the full day-by-day underneath, and the questions a foreign trekker actually asks — duration, max altitude, difficulty, season, accommodation, walking hours — answered in one strip along the bottom.",
+          "The itinerary format. A route map with every stop and altitude named, the full day-by-day underneath, and the questions a foreign trekker actually asks about duration, max altitude, difficulty, season, accommodation and walking hours, answered in one strip along the bottom.",
         wide: true,
       },
       {
         kind: "prose",
         heading: "Why the itineraries look like this",
         body: [
-          "A trekking post that is just a photograph of a mountain competes with every other photograph of a mountain. Someone deciding whether to spend three weeks and a lot of money in a country they have never visited is not short of scenery — they are short of specifics.",
+          "A trekking post that is just a photograph of a mountain competes with every other photograph of a mountain. Someone deciding whether to spend three weeks and a lot of money in a country they have never visited is not short of scenery. They are short of specifics.",
           "So the format leads with the map and the numbers. Altitudes on every stop, acclimatisation days marked, the flight legs drawn separately from the walking. It is denser than a normal social post on purpose: density reads as competence, and competence is the thing being sold.",
         ],
       },
@@ -581,14 +513,14 @@ export const projects: Project[] = [
         alt: "A second Mountain Routes trek itinerary in the same visual system.",
         width: 1400,
         height: 1400,
-        caption: "The same system applied to another route — one format, so the account starts to look like a company rather than a feed.",
+        caption: "The same system applied to another route. One format, so the account starts to look like a company rather than a feed.",
         wide: true,
       },
       {
         kind: "prose",
         heading: "Reporting to the owner every month",
         body: [
-          "Every month the owner gets a written performance report. Not a screenshot of a dashboard — an actual account of what was posted, what worked, what didn't, and what changes next month.",
+          "Every month the owner gets a written performance report. Not a screenshot of a dashboard, but an actual account of what was posted, what worked, what did not, and what changes next month.",
           "That habit came out of the customer-success year. The reporting is often what keeps the relationship, not the work itself.",
         ],
       },

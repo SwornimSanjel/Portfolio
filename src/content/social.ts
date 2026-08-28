@@ -20,7 +20,7 @@ export const social: SocialLink[] = [
     label: "Instagram",
     href: unverified(
       "https://www.instagram.com/_swornimsanjel_/",
-      "Two Instagram accounts were supplied. Only one should be linked — which is the professional one?",
+      "Two Instagram accounts were supplied. Only one should be linked. Which is the professional one?",
     ),
     primary: true,
   },

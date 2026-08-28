@@ -169,7 +169,7 @@ export function Nav() {
             lifted && "glass",
             overDark && !lifted ? "text-paper" : "text-ink",
           )}
-          aria-label={`${profile.name} — home`}
+          aria-label={`${profile.name}, home`}
         >
           <span className="text-[0.95rem] font-semibold tracking-tight">{profile.name}</span>
           <span

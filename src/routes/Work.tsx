@@ -18,7 +18,7 @@ export default function WorkPage() {
   useSeo({
     title: "Work",
     description:
-      "Eight projects — a company, two client website builds, an internal product, the founder-led sale behind Avernek's inquiry system, a UI/UX platform, and two years of brand and content work.",
+      "Seven projects: a company, two client website builds, the product it sells, a UI/UX platform, and two years of brand and content work.",
     canonical: "/work",
   });
 
@@ -31,11 +31,10 @@ export default function WorkPage() {
             {count} projects, in the order they explain each other.
           </h1>
           <p className="mt-6 max-w-measure text-lead text-graphite">
-            01 is the company. 02 and 03 are client websites — the part of an Avernek
-            engagement I take myself, end to end. 04 and 05 are what the company runs on
-            internally and what it sells — the selling and scoping of it is the part that is
-            mine. 06 to 08 are what came before: interface design, and
-            the brand and growth work that taught me what customers actually complain about.
+            01 is the company and 04 is the product I started it to sell. 02 and 03 are client
+            websites, the part of an Avernek engagement I take myself, end to end. 05 to 07
+            are what came before: interface design, and the brand and growth work that taught
+            me what customers actually complain about.
           </p>
         </Container>
       </section>

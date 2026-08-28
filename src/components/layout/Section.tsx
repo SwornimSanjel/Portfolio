@@ -49,7 +49,7 @@ export function Section({
         <div className="grid gap-x-8 gap-y-4 md:grid-cols-12">
           <div className="md:col-span-3">
             <p className="meta tnum">
-              {index ? `${index} — ` : ""}
+              {index ? `${index} · ` : ""}
               {label}
             </p>
           </div>

@@ -13,7 +13,7 @@ export default function AboutPage() {
   useSeo({
     title: "About",
     description:
-      "Design curiosity to UI/UX to Computer Science to customer success to AI to founding a company — the actual progression.",
+      "Design curiosity to UI/UX to Computer Science to customer success to AI to founding a company. The actual progression.",
     canonical: "/about",
   });
 
@@ -165,7 +165,7 @@ export default function AboutPage() {
                     <li key={t.name} className="text-body text-graphite">
                       {t.name}
                       {"note" in t && t.note && (
-                        <span className="ml-2 text-muted">— {t.note}</span>
+                        <span className="ml-2 text-muted">· {t.note}</span>
                       )}
                     </li>
                   ))}

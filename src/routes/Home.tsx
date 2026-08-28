@@ -92,7 +92,7 @@ export default function HomePage() {
             >
               <div className="md:col-span-3">
                 <p className="meta tnum">
-                  {String(i + 1).padStart(2, "0")} — {block.label}
+                  {String(i + 1).padStart(2, "0")} · {block.label}
                 </p>
               </div>
               <div className="md:col-span-8">

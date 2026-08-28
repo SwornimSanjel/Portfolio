@@ -65,7 +65,7 @@ export function ArchiveGallery() {
                 type="button"
                 onClick={() => setLightbox(i)}
                 className="absolute inset-0 h-full w-full text-left"
-                aria-label={`${item.title} — open larger`}
+                aria-label={`${item.title}, open larger`}
               >
                 <Image
                   src={item.src}
@@ -109,7 +109,7 @@ export function ArchiveGallery() {
               type="button"
               onClick={() => setLightbox(i)}
               className="block w-full text-left"
-              aria-label={`${item.title} — open larger`}
+              aria-label={`${item.title}, open larger`}
             >
               <span className="relative block aspect-[4/5] overflow-hidden rounded-lg border border-rule bg-paper-deep">
                 <Image

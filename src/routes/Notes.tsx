@@ -6,7 +6,7 @@ import { useSeo } from "@/lib/seo";
 export default function NotesPage() {
   useSeo({
     title: "Notes",
-    description: "Things I'm learning while building — mostly the mistakes.",
+    description: "Things I'm learning while building. Mostly the mistakes.",
     canonical: "/notes",
   });
 

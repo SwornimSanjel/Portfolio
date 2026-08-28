@@ -52,7 +52,7 @@ export function ArchiveFullGrid() {
               type="button"
               onClick={() => setOpenId(item.id)}
               className="group block w-full text-left"
-              aria-label={`${item.title} — open larger`}
+              aria-label={`${item.title}, open larger`}
             >
               <span
                 className={cn(

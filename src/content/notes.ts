@@ -29,9 +29,9 @@ export const notes: Note[] = [
     standfirst:
       "I discounted early work to get signatures. Then I spent months trying to climb back out of the number I'd set.",
     body: [
-      "The first few deals felt like a win. Get the logo, get the case study, worry about margin later. What actually happened is that I set an anchor — not just with those clients, but in my own head about what the work was worth.",
+      "The first few deals felt like a win. Get the logo, get the case study, worry about margin later. What actually happened is that I set an anchor, not just with those clients, but in my own head about what the work was worth.",
       "Raising a price with an existing client is a conversation about you. Setting it correctly at the start is a conversation about the work. Those are very different meetings and only one of them is comfortable.",
-      "What I'd tell myself: a discount is fine if it's visible and temporary — write the real price down, then show the reduction. A quiet low price isn't a discount, it's just your price.",
+      "What I'd tell myself: a discount is fine if it's visible and temporary. Write the real price down, then show the reduction. A quiet low price isn't a discount, it's just your price.",
     ],
     status: "draft",
   },

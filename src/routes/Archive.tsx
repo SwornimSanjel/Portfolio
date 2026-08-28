@@ -18,7 +18,7 @@ export default function ArchivePage() {
           <p className="meta">Archive</p>
           <h1 className="mt-6 max-w-[18ch] text-h1 text-ink">Interface work.</h1>
           <p className="mt-6 max-w-measure text-lead text-graphite">
-            About two years of self-directed UI work — screens picked, designed and posted,
+            About two years of self-directed UI work. Screens picked, designed and posted,
             mostly unbriefed. Most of it still only exists on LinkedIn and TikTok.
           </p>
         </Container>
